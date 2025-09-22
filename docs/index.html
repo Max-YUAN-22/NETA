@@ -270,6 +270,156 @@
             text-decoration: underline;
         }
 
+        /* 加载动画 */
+        .loading-spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(124, 58, 237, 0.3);
+            border-radius: 50%;
+            border-top-color: var(--primary-purple);
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.9);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .loading-overlay.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* 响应式优化 */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+            
+            .stat-number {
+                font-size: 2rem;
+            }
+            
+            .feature-card, .stat-card {
+                margin-bottom: 1rem;
+            }
+            
+            .chart-container canvas {
+                max-width: 100%;
+                height: auto !important;
+            }
+        }
+
+        /* 交互反馈 */
+        .btn {
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .dataset-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+        }
+
+        /* 滚动条样式 */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--neutral-100);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary-purple);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--primary-purple-dark);
+        }
+
+        /* 工具提示 */
+        .tooltip-custom {
+            position: relative;
+            cursor: help;
+        }
+
+        .tooltip-custom::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--neutral-900);
+            color: white;
+            padding: 0.5rem;
+            border-radius: 0.25rem;
+            font-size: 0.8rem;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .tooltip-custom:hover::after {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* 返回顶部按钮 */
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 50px;
+            height: 50px;
+            background: var(--primary-purple);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            background: var(--primary-purple-dark);
+            transform: translateY(-2px);
+        }
+
         .dataset-card {
             background: white;
             border-radius: 1rem;
@@ -463,6 +613,14 @@
             </div>
         </div>
     </nav>
+
+    <!-- 加载动画 -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="text-center">
+            <div class="loading-spinner mb-3"></div>
+            <p data-translate="loading_text">正在加载...</p>
+        </div>
+    </div>
 
     <!-- 首页部分 -->
     <section id="home" class="hero-section">
@@ -954,6 +1112,11 @@
         </div>
     </footer>
 
+    <!-- 返回顶部按钮 -->
+    <button class="back-to-top" id="backToTop" onclick="scrollToTop()">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         // 多语言支持
@@ -1030,6 +1193,7 @@
                 doc_email: "邮箱",
                 doc_github: "GitHub",
                 doc_homepage: "项目主页",
+                loading_text: "正在加载...",
                 footer_title: "NETA项目 | 神经内分泌肿瘤研究平台",
                 footer_subtitle: "连接神经内分泌肿瘤生物学与计算创新"
             },
@@ -1105,6 +1269,7 @@
                 doc_email: "Email",
                 doc_github: "GitHub",
                 doc_homepage: "Project Homepage",
+                loading_text: "Loading...",
                 footer_title: "NETA Project | Neuroendocrine Tumor Research Platform",
                 footer_subtitle: "Connecting Neuroendocrine Tumor Biology with Computational Innovation"
             }
@@ -1426,7 +1591,7 @@
                     <div class="dataset-card">
                         <div class="dataset-header d-flex justify-content-between align-items-start">
                             <h5 class="dataset-title">${title}</h5>
-                            <span class="real-data-badge">${currentLanguage === 'zh' ? '真实数据' : 'Real Data'}</span>
+                            <span class="real-data-badge tooltip-custom" data-tooltip="${currentLanguage === 'zh' ? '基于GEO数据库的真实RNA-seq数据' : 'Real RNA-seq data from GEO database'}">${currentLanguage === 'zh' ? '真实数据' : 'Real Data'}</span>
                         </div>
                         <div class="dataset-geo mb-3">
                             <strong>${dataset.geo_id}</strong>
@@ -2338,10 +2503,64 @@
             });
         }
 
+        // 显示加载动画
+        function showLoading() {
+            document.getElementById('loadingOverlay').classList.add('show');
+        }
+
+        // 隐藏加载动画
+        function hideLoading() {
+            document.getElementById('loadingOverlay').classList.remove('show');
+        }
+
+        // 键盘快捷键支持
+        document.addEventListener('keydown', function(e) {
+            // Ctrl/Cmd + 数字键切换页面
+            if ((e.ctrlKey || e.metaKey) && e.key >= '1' && e.key <= '5') {
+                e.preventDefault();
+                const sections = ['home', 'datasets', 'analysis', 'statistics', 'documentation'];
+                const index = parseInt(e.key) - 1;
+                if (sections[index]) {
+                    showSection(sections[index]);
+                }
+            }
+            
+            // ESC键返回首页
+            if (e.key === 'Escape') {
+                showSection('home');
+            }
+        });
+
+        // 返回顶部功能
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        // 监听滚动事件，显示/隐藏返回顶部按钮
+        window.addEventListener('scroll', function() {
+            const backToTop = document.getElementById('backToTop');
+            if (window.pageYOffset > 300) {
+                backToTop.classList.add('show');
+            } else {
+                backToTop.classList.remove('show');
+            }
+        });
+
         // 页面加载完成后初始化
         document.addEventListener('DOMContentLoaded', function() {
-            // 默认显示首页
-            showSection('home');
+            // 显示加载动画
+            showLoading();
+            
+            // 模拟加载时间
+            setTimeout(() => {
+                // 默认显示首页
+                showSection('home');
+                // 隐藏加载动画
+                hideLoading();
+            }, 1000);
         });
     </script>
 </body>
