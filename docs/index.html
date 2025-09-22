@@ -740,10 +740,17 @@
                                 <i class="fas fa-database me-2"></i>
                                 ${currentLanguage === 'zh' ? '查看数据文件' : 'View Data Files'}
                             </button>
-                            <button class="btn btn-success" onclick="runDatasetAnalysis('${dataset.geo_id}')">
-                                <i class="fas fa-chart-line me-2"></i>
-                                ${currentLanguage === 'zh' ? 'DESeq2分析' : 'DESeq2 Analysis'}
-                            </button>
+                            ${hasRealAnalysis(dataset.geo_id) ? `
+                                <button class="btn btn-success" onclick="runDatasetAnalysis('${dataset.geo_id}')">
+                                    <i class="fas fa-chart-line me-2"></i>
+                                    ${currentLanguage === 'zh' ? 'DESeq2分析' : 'DESeq2 Analysis'}
+                                </button>
+                            ` : `
+                                <button class="btn btn-secondary" disabled>
+                                    <i class="fas fa-clock me-2"></i>
+                                    ${currentLanguage === 'zh' ? '分析进行中' : 'Analysis Pending'}
+                                </button>
+                            `}
                             <a href="${dataset.geo_url}" target="_blank" class="btn btn-outline-primary">
                                 <i class="fas fa-external-link-alt me-2"></i>
                                 ${currentLanguage === 'zh' ? 'GEO数据库' : 'GEO Database'}
@@ -1078,23 +1085,22 @@
             return data;
         }
 
+        // 检查是否有真实分析结果
+        function hasRealAnalysis(geoId) {
+            const analyzedDatasets = ['GSE73338'];  // 有真实分析结果的数据集
+            return analyzedDatasets.includes(geoId);
+        }
+
         // 获取数据集基因数
         function getDatasetGeneCount(geoId) {
             const dataset = datasets.find(d => d.geo_id === geoId);
             return dataset ? dataset.n_genes.toLocaleString() : 'N/A';
         }
 
-        // 获取显著基因数
+        // 获取显著基因数 - 基于真实分析结果
         function getSignificantGenesCount(geoId) {
             const counts = {
-                'GSE73338': 1247,
-                'GSE98894': 892,
-                'GSE103174': 1563,
-                'GSE117851': 1108,
-                'GSE156405': 445,
-                'GSE11969': 2134,
-                'GSE60436': 2891,
-                'GSE126030': 567
+                'GSE73338': 0  // 真实分析结果，需要从CSV文件读取
             };
             return counts[geoId] || 0;
         }
