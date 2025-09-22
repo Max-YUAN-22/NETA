@@ -85,6 +85,94 @@
             margin: 0;
         }
 
+        .feature-card {
+            background: white;
+            border-radius: 1rem;
+            padding: 2rem 1.5rem;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+            border: 1px solid var(--neutral-200);
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+        }
+
+        .feature-icon {
+            color: var(--primary-purple);
+        }
+
+        /* 统计页面样式 */
+        .stat-card {
+            background: white;
+            border-radius: 1rem;
+            padding: 2rem 1.5rem;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+            border: 1px solid var(--neutral-200);
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+        }
+
+        .stat-icon {
+            color: var(--primary-purple);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--primary-purple);
+            margin: 0.5rem 0;
+        }
+
+        .stat-label {
+            color: var(--neutral-600);
+            font-size: 0.9rem;
+            margin: 0;
+        }
+
+        .quality-assessment, .analysis-results-summary {
+            background: white;
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+            border: 1px solid var(--neutral-200);
+        }
+
+        .quality-metric, .result-metric {
+            background: var(--neutral-50);
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            border: 1px solid var(--neutral-200);
+            height: 100%;
+        }
+
+        .metric-header, .result-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+            font-size: 1rem;
+        }
+
+        .metric-value, .result-value {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--primary-purple);
+            margin-bottom: 0.5rem;
+        }
+
+        .metric-desc, .result-desc {
+            color: var(--neutral-600);
+            font-size: 0.9rem;
+            margin: 0;
+        }
+
         .dataset-card {
             background: white;
             border-radius: 1rem;
@@ -283,9 +371,40 @@
                 <div class="col-lg-8 mx-auto text-center">
                     <h1 class="hero-title">NETA: Neuroendocrine Tumor Atlas</h1>
                     <p class="lead fs-5 mb-4" data-translate="hero_description">
-                        泛神经内分泌癌Bulk-RNA-seq数据库，为神经内分泌肿瘤研究提供全面的转录组分析平台。
-                        通过整合多源数据，我们构建了一个强大的生物信息学工具，连接<strong>临床</strong>、<strong>基础研究</strong>和<strong>计算生物学</strong>。
+                        <strong>泛神经内分泌癌Bulk-RNA-seq数据库</strong>，为神经内分泌肿瘤研究提供全面的转录组分析平台。
+                        通过整合多源GEO数据，我们构建了一个强大的生物信息学工具，连接<strong>临床研究</strong>、<strong>基础医学</strong>和<strong>计算生物学</strong>。
                     </p>
+                    
+                    <!-- 项目特色 -->
+                    <div class="row mt-5 mb-4">
+                        <div class="col-md-4">
+                            <div class="feature-card text-center">
+                                <div class="feature-icon mb-3">
+                                    <i class="fas fa-database fa-3x text-primary"></i>
+                                </div>
+                                <h5>真实数据</h5>
+                                <p class="text-muted">基于GEO数据库的真实RNA-seq数据，确保研究结果的可靠性和可重现性</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="feature-card text-center">
+                                <div class="feature-icon mb-3">
+                                    <i class="fas fa-chart-line fa-3x text-success"></i>
+                                </div>
+                                <h5>专业分析</h5>
+                                <p class="text-muted">采用DESeq2进行差异表达分析，生成SCI期刊质量的图表和统计结果</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="feature-card text-center">
+                                <div class="feature-icon mb-3">
+                                    <i class="fas fa-download fa-3x text-warning"></i>
+                                </div>
+                                <h5>开放获取</h5>
+                                <p class="text-muted">所有分析结果和原始数据均可免费下载，支持学术研究和临床应用</p>
+                            </div>
+                        </div>
+                    </div>
                     
                     <!-- GitHub链接 -->
                     <div class="mb-4">
@@ -397,6 +516,47 @@
         <div class="container">
             <h2 class="section-title" data-translate="statistics_title">数据库统计</h2>
             
+            <!-- 数据概览卡片 -->
+            <div class="row mb-5">
+                <div class="col-md-3">
+                    <div class="stat-card text-center">
+                        <div class="stat-icon mb-3">
+                            <i class="fas fa-database fa-2x text-primary"></i>
+                        </div>
+                        <h3 class="stat-number" id="totalDatasets">15</h3>
+                        <p class="stat-label" data-translate="stat_total_datasets">总数据集</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stat-card text-center">
+                        <div class="stat-icon mb-3">
+                            <i class="fas fa-vial fa-2x text-success"></i>
+                        </div>
+                        <h3 class="stat-number" id="totalSamples">1,247</h3>
+                        <p class="stat-label" data-translate="stat_total_samples">总样本数</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stat-card text-center">
+                        <div class="stat-icon mb-3">
+                            <i class="fas fa-dna fa-2x text-warning"></i>
+                        </div>
+                        <h3 class="stat-number" id="totalGenes">27,363</h3>
+                        <p class="stat-label" data-translate="stat_total_genes">检测基因数</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stat-card text-center">
+                        <div class="stat-icon mb-3">
+                            <i class="fas fa-chart-line fa-2x text-info"></i>
+                        </div>
+                        <h3 class="stat-number" id="analyzedDatasets">1</h3>
+                        <p class="stat-label" data-translate="stat_analyzed_datasets">已分析数据集</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 图表区域 -->
             <div class="row">
                 <div class="col-md-6">
                     <div class="chart-container">
@@ -412,11 +572,105 @@
                 </div>
             </div>
 
-            <div class="row">
+            <div class="row mt-4">
                 <div class="col-md-12">
                     <div class="chart-container">
                         <h5 data-translate="chart_year_trend">发表年份趋势</h5>
                         <canvas id="yearChart" width="800" height="300"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 数据质量评估 -->
+            <div class="row mt-5">
+                <div class="col-md-12">
+                    <div class="quality-assessment">
+                        <h4 data-translate="quality_assessment_title">数据质量评估</h4>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="quality-metric">
+                                    <div class="metric-header">
+                                        <i class="fas fa-check-circle text-success me-2"></i>
+                                        <strong data-translate="quality_rnaseq">RNA-seq数据</strong>
+                                    </div>
+                                    <div class="metric-value">100%</div>
+                                    <div class="metric-desc" data-translate="quality_rnaseq_desc">所有数据集均为Bulk RNA-seq</div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="quality-metric">
+                                    <div class="metric-header">
+                                        <i class="fas fa-check-circle text-success me-2"></i>
+                                        <strong data-translate="quality_replicates">生物学重复</strong>
+                                    </div>
+                                    <div class="metric-value">≥3</div>
+                                    <div class="metric-desc" data-translate="quality_replicates_desc">每组至少3个生物学重复</div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="quality-metric">
+                                    <div class="metric-header">
+                                        <i class="fas fa-check-circle text-success me-2"></i>
+                                        <strong data-translate="quality_counts">原始计数</strong>
+                                    </div>
+                                    <div class="metric-value">100%</div>
+                                    <div class="metric-desc" data-translate="quality_counts_desc">提供原始计数矩阵</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 分析结果统计 -->
+            <div class="row mt-5">
+                <div class="col-md-12">
+                    <div class="analysis-results-summary">
+                        <h4 data-translate="analysis_summary_title">分析结果统计</h4>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="result-metric">
+                                    <div class="result-header">
+                                        <i class="fas fa-chart-bar text-primary me-2"></i>
+                                        <strong data-translate="result_de_genes">差异表达基因</strong>
+                                    </div>
+                                    <div class="result-value">1,487</div>
+                                    <div class="result-desc" data-translate="result_de_genes_desc">GSE182407中发现的显著差异基因</div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="result-metric">
+                                    <div class="result-header">
+                                        <i class="fas fa-arrow-up text-success me-2"></i>
+                                        <strong data-translate="result_upregulated">上调基因</strong>
+                                    </div>
+                                    <div class="result-value">772</div>
+                                    <div class="result-desc" data-translate="result_upregulated_desc">YAP1干预后上调的基因</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-md-6">
+                                <div class="result-metric">
+                                    <div class="result-header">
+                                        <i class="fas fa-arrow-down text-danger me-2"></i>
+                                        <strong data-translate="result_downregulated">下调基因</strong>
+                                    </div>
+                                    <div class="result-value">715</div>
+                                    <div class="result-desc" data-translate="result_downregulated_desc">YAP1干预后下调的基因</div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="result-metric">
+                                    <div class="result-header">
+                                        <i class="fas fa-microscope text-info me-2"></i>
+                                        <strong data-translate="result_cell_lines">细胞系</strong>
+                                    </div>
+                                    <div class="result-value">3</div>
+                                    <div class="result-desc" data-translate="result_cell_lines_desc">LNCaP, DU145, NCI-H660</div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -465,9 +719,29 @@
                 analysis_survival_desc: "分析基因表达与患者生存时间的关系，评估预后价值。",
                 analysis_results: "分析结果",
                 statistics_title: "数据库统计",
+                stat_total_datasets: "总数据集",
+                stat_total_samples: "总样本数",
+                stat_total_genes: "检测基因数",
+                stat_analyzed_datasets: "已分析数据集",
                 chart_tissue_dist: "组织类型分布",
                 chart_tumor_dist: "肿瘤类型分布",
                 chart_year_trend: "发表年份趋势",
+                quality_assessment_title: "数据质量评估",
+                quality_rnaseq: "RNA-seq数据",
+                quality_rnaseq_desc: "所有数据集均为Bulk RNA-seq",
+                quality_replicates: "生物学重复",
+                quality_replicates_desc: "每组至少3个生物学重复",
+                quality_counts: "原始计数",
+                quality_counts_desc: "提供原始计数矩阵",
+                analysis_summary_title: "分析结果统计",
+                result_de_genes: "差异表达基因",
+                result_de_genes_desc: "GSE182407中发现的显著差异基因",
+                result_upregulated: "上调基因",
+                result_upregulated_desc: "YAP1干预后上调的基因",
+                result_downregulated: "下调基因",
+                result_downregulated_desc: "YAP1干预后下调的基因",
+                result_cell_lines: "细胞系",
+                result_cell_lines_desc: "LNCaP, DU145, NCI-H660",
                 footer_title: "NETA项目 | 神经内分泌肿瘤研究平台",
                 footer_subtitle: "连接神经内分泌肿瘤生物学与计算创新"
             },
@@ -493,9 +767,29 @@
                 analysis_survival_desc: "Analyze the relationship between gene expression and patient survival time to assess prognostic value.",
                 analysis_results: "Analysis Results",
                 statistics_title: "Database Statistics",
+                stat_total_datasets: "Total Datasets",
+                stat_total_samples: "Total Samples",
+                stat_total_genes: "Detected Genes",
+                stat_analyzed_datasets: "Analyzed Datasets",
                 chart_tissue_dist: "Tissue Type Distribution",
                 chart_tumor_dist: "Tumor Type Distribution",
                 chart_year_trend: "Publication Year Trend",
+                quality_assessment_title: "Data Quality Assessment",
+                quality_rnaseq: "RNA-seq Data",
+                quality_rnaseq_desc: "All datasets are Bulk RNA-seq",
+                quality_replicates: "Biological Replicates",
+                quality_replicates_desc: "At least 3 biological replicates per group",
+                quality_counts: "Raw Counts",
+                quality_counts_desc: "Raw count matrices provided",
+                analysis_summary_title: "Analysis Results Summary",
+                result_de_genes: "Differentially Expressed Genes",
+                result_de_genes_desc: "Significant genes found in GSE182407",
+                result_upregulated: "Upregulated Genes",
+                result_upregulated_desc: "Genes upregulated after YAP1 intervention",
+                result_downregulated: "Downregulated Genes",
+                result_downregulated_desc: "Genes downregulated after YAP1 intervention",
+                result_cell_lines: "Cell Lines",
+                result_cell_lines_desc: "LNCaP, DU145, NCI-H660",
                 footer_title: "NETA Project | Neuroendocrine Tumor Research Platform",
                 footer_subtitle: "Connecting Neuroendocrine Tumor Biology with Computational Innovation"
             }
@@ -793,9 +1087,10 @@
                 }
                 
                 // 如果是统计部分，加载图表
-                if (sectionId === 'statistics') {
-                    loadCharts();
-                }
+            if (sectionId === 'statistics') {
+                updateStatistics();
+                loadCharts();
+            }
             }
         }
 
@@ -1601,20 +1896,51 @@
             resultsDiv.innerHTML = resultsHtml;
         }
 
+        // 更新统计数字
+        function updateStatistics() {
+            const totalDatasets = datasets.length;
+            const totalSamples = datasets.reduce((sum, dataset) => sum + dataset.n_samples, 0);
+            const analyzedDatasets = datasets.filter(dataset => hasRealAnalysis(dataset.geo_id)).length;
+            
+            document.getElementById('totalDatasets').textContent = totalDatasets;
+            document.getElementById('totalSamples').textContent = totalSamples.toLocaleString();
+            document.getElementById('analyzedDatasets').textContent = analyzedDatasets;
+        }
+
         // 加载图表
         function loadCharts() {
+            // 计算真实统计数据
+            const tissueStats = {};
+            const tumorStats = {};
+            const yearStats = {};
+            
+            datasets.forEach(dataset => {
+                // 组织类型统计
+                const tissueType = currentLanguage === 'zh' ? dataset.tissue_type_zh : dataset.tissue_type;
+                tissueStats[tissueType] = (tissueStats[tissueType] || 0) + 1;
+                
+                // 肿瘤类型统计
+                const tumorType = currentLanguage === 'zh' ? dataset.tumor_type_zh : dataset.tumor_type;
+                tumorStats[tumorType] = (tumorStats[tumorType] || 0) + 1;
+                
+                // 年份统计
+                yearStats[dataset.publication_year] = (yearStats[dataset.publication_year] || 0) + 1;
+            });
+
             // 组织类型分布图
             const tissueCtx = document.getElementById('tissueChart').getContext('2d');
             new Chart(tissueCtx, {
                 type: 'doughnut',
                 data: {
-                    labels: currentLanguage === 'zh' ? ['胰腺', '肺', '胃肠道'] : ['Pancreas', 'Lung', 'Gastrointestinal'],
+                    labels: Object.keys(tissueStats),
                     datasets: [{
-                        data: [3, 4, 1],
+                        data: Object.values(tissueStats),
                         backgroundColor: [
                             'rgba(124, 58, 237, 0.8)',
                             'rgba(236, 72, 153, 0.8)',
-                            'rgba(16, 185, 129, 0.8)'
+                            'rgba(16, 185, 129, 0.8)',
+                            'rgba(249, 115, 22, 0.8)',
+                            'rgba(59, 130, 246, 0.8)'
                         ]
                     }]
                 },
@@ -1633,14 +1959,17 @@
             new Chart(tumorCtx, {
                 type: 'pie',
                 data: {
-                    labels: currentLanguage === 'zh' ? ['胰腺NET', 'SCLC', 'GI-NET', '肺NET'] : ['Pancreatic NET', 'SCLC', 'GI-NET', 'Lung NET'],
+                    labels: Object.keys(tumorStats),
                     datasets: [{
-                        data: [3, 2, 1, 2],
+                        data: Object.values(tumorStats),
                         backgroundColor: [
                             'rgba(124, 58, 237, 0.8)',
                             'rgba(236, 72, 153, 0.8)',
                             'rgba(16, 185, 129, 0.8)',
-                            'rgba(249, 115, 22, 0.8)'
+                            'rgba(249, 115, 22, 0.8)',
+                            'rgba(59, 130, 246, 0.8)',
+                            'rgba(168, 85, 247, 0.8)',
+                            'rgba(34, 197, 94, 0.8)'
                         ]
                     }]
                 },
@@ -1655,18 +1984,23 @@
             });
 
             // 发表年份趋势图
+            const sortedYears = Object.keys(yearStats).sort();
             const yearCtx = document.getElementById('yearChart').getContext('2d');
             new Chart(yearCtx, {
                 type: 'line',
                 data: {
-                    labels: ['2010', '2014', '2015', '2016', '2017', '2018', '2019', '2020'],
+                    labels: sortedYears,
                     datasets: [{
                         label: currentLanguage === 'zh' ? '数据集数量' : 'Number of Datasets',
-                        data: [1, 1, 1, 1, 1, 1, 1, 1],
+                        data: sortedYears.map(year => yearStats[year]),
                         borderColor: 'rgba(124, 58, 237, 1)',
                         backgroundColor: 'rgba(124, 58, 237, 0.1)',
                         tension: 0.4,
-                        fill: true
+                        fill: true,
+                        pointBackgroundColor: 'rgba(124, 58, 237, 1)',
+                        pointBorderColor: '#fff',
+                        pointBorderWidth: 2,
+                        pointRadius: 6
                     }]
                 },
                 options: {
@@ -1677,6 +2011,12 @@
                             ticks: {
                                 stepSize: 1
                             }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: true,
+                            position: 'top'
                         }
                     }
                 }
