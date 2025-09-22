@@ -392,20 +392,20 @@
                 </div>
                 <div class="col-md-3">
                     <div class="stat-card">
-                        <div class="stat-number">142</div>
+                        <div class="stat-number">614</div>
                         <div class="stat-label" data-translate="stat_samples">样本</div>
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="stat-card">
-                        <div class="stat-number">20,000</div>
+                        <div class="stat-number">48,803</div>
                         <div class="stat-label" data-translate="stat_genes">基因</div>
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="stat-card">
-                        <div class="stat-number">2.8M</div>
-                        <div class="stat-label" data-translate="stat_expressions">表达数据</div>
+                        <div class="stat-number">88MB</div>
+                        <div class="stat-label" data-translate="stat_expressions">真实数据</div>
                     </div>
                 </div>
             </div>
@@ -600,7 +600,7 @@
                 stat_datasets: "数据集",
                 stat_samples: "样本",
                 stat_genes: "基因",
-                stat_expressions: "表达数据",
+                stat_expressions: "真实数据",
                 datasets_title: "数据集列表",
                 search_datasets: "搜索数据集...",
                 all_tissues: "所有组织类型",
@@ -655,7 +655,7 @@
                 stat_datasets: "Datasets",
                 stat_samples: "Samples",
                 stat_genes: "Genes",
-                stat_expressions: "Expression Data",
+                stat_expressions: "Real Data",
                 datasets_title: "Dataset List",
                 search_datasets: "Search datasets...",
                 all_tissues: "All Tissue Types",
@@ -722,7 +722,7 @@
             }
         }
 
-        // 模拟数据集
+        // 真实数据集
         const datasets = [
             {
                 geo_id: 'GSE73338',
@@ -732,10 +732,12 @@
                 tissue_type_zh: '胰腺',
                 tumor_type: 'Pancreatic NET',
                 tumor_type_zh: '胰腺NET',
-                n_samples: 15,
-                n_genes: 20000,
+                n_samples: 97,
+                n_genes: 15961,
                 publication_year: 2015,
-                reference_pmid: '26340334'
+                reference_pmid: '26340334',
+                geo_url: 'https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE73338',
+                is_real_data: true
             },
             {
                 geo_id: 'GSE98894',
@@ -745,10 +747,12 @@
                 tissue_type_zh: '胃肠道',
                 tumor_type: 'GI-NET',
                 tumor_type_zh: '胃肠道NET',
-                n_samples: 25,
-                n_genes: 20000,
+                n_samples: 212,
+                n_genes: 0,
                 publication_year: 2017,
-                reference_pmid: '28514442'
+                reference_pmid: '28514442',
+                geo_url: 'https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE98894',
+                is_real_data: true
             },
             {
                 geo_id: 'GSE103174',
@@ -758,10 +762,12 @@
                 tissue_type_zh: '肺',
                 tumor_type: 'SCLC',
                 tumor_type_zh: '小细胞肺癌',
-                n_samples: 20,
-                n_genes: 20000,
+                n_samples: 53,
+                n_genes: 15040,
                 publication_year: 2016,
-                reference_pmid: '27533040'
+                reference_pmid: '27533040',
+                geo_url: 'https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE103174',
+                is_real_data: true
             },
             {
                 geo_id: 'GSE117851',
@@ -771,10 +777,12 @@
                 tissue_type_zh: '胰腺',
                 tumor_type: 'Pancreatic NET',
                 tumor_type_zh: '胰腺NET',
-                n_samples: 18,
-                n_genes: 20000,
+                n_samples: 47,
+                n_genes: 22277,
                 publication_year: 2018,
-                reference_pmid: '30115739'
+                reference_pmid: '30115739',
+                geo_url: 'https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE117851',
+                is_real_data: true
             },
             {
                 geo_id: 'GSE156405',
@@ -784,10 +792,12 @@
                 tissue_type_zh: '胰腺',
                 tumor_type: 'Pancreatic NET',
                 tumor_type_zh: '胰腺NET',
-                n_samples: 22,
-                n_genes: 20000,
+                n_samples: 17,
+                n_genes: 0,
                 publication_year: 2020,
-                reference_pmid: '32561839'
+                reference_pmid: '32561839',
+                geo_url: 'https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE156405',
+                is_real_data: true
             },
             {
                 geo_id: 'GSE11969',
@@ -797,10 +807,12 @@
                 tissue_type_zh: '肺',
                 tumor_type: 'Lung NET',
                 tumor_type_zh: '肺NET',
-                n_samples: 12,
-                n_genes: 20000,
+                n_samples: 163,
+                n_genes: 21619,
                 publication_year: 2010,
-                reference_pmid: '20179182'
+                reference_pmid: '20179182',
+                geo_url: 'https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE11969',
+                is_real_data: true
             },
             {
                 geo_id: 'GSE60436',
@@ -810,10 +822,12 @@
                 tissue_type_zh: '肺',
                 tumor_type: 'SCLC',
                 tumor_type_zh: '小细胞肺癌',
-                n_samples: 16,
-                n_genes: 20000,
+                n_samples: 9,
+                n_genes: 48803,
                 publication_year: 2014,
-                reference_pmid: '25043061'
+                reference_pmid: '25043061',
+                geo_url: 'https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE60436',
+                is_real_data: true
             },
             {
                 geo_id: 'GSE126030',
@@ -823,10 +837,12 @@
                 tissue_type_zh: '肺',
                 tumor_type: 'Lung NET',
                 tumor_type_zh: '肺NET',
-                n_samples: 14,
-                n_genes: 20000,
+                n_samples: 16,
+                n_genes: 0,
                 publication_year: 2019,
-                reference_pmid: '31515453'
+                reference_pmid: '31515453',
+                geo_url: 'https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE126030',
+                is_real_data: true
             }
         ];
 
@@ -869,10 +885,16 @@
                 
                 col.innerHTML = `
                     <div class="dataset-card">
-                        <div class="dataset-header">
+                        <div class="dataset-header d-flex justify-content-between align-items-start">
                             <h5 class="dataset-title">${title}</h5>
+                            <span class="badge bg-success">${currentLanguage === 'zh' ? '真实数据' : 'Real Data'}</span>
                         </div>
-                        <div class="dataset-geo mb-3">${dataset.geo_id}</div>
+                        <div class="dataset-geo mb-3">
+                            <strong>${dataset.geo_id}</strong>
+                            <a href="${dataset.geo_url}" target="_blank" class="ms-2 text-decoration-none">
+                                <i class="fas fa-external-link-alt"></i>
+                            </a>
+                        </div>
                         <div class="row mb-3">
                             <div class="col-6">
                                 <small class="text-muted">${currentLanguage === 'zh' ? '组织类型' : 'Tissue Type'}</small><br>
@@ -889,14 +911,32 @@
                                 <strong>${dataset.n_samples}</strong>
                             </div>
                             <div class="col-6">
+                                <small class="text-muted">${currentLanguage === 'zh' ? '基因数' : 'Genes'}</small><br>
+                                <strong>${dataset.n_genes > 0 ? dataset.n_genes.toLocaleString() : 'N/A'}</strong>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-6">
                                 <small class="text-muted">${currentLanguage === 'zh' ? '发表年份' : 'Year'}</small><br>
                                 <strong>${dataset.publication_year}</strong>
                             </div>
+                            <div class="col-6">
+                                <small class="text-muted">${currentLanguage === 'zh' ? 'PMID' : 'PMID'}</small><br>
+                                <a href="https://pubmed.ncbi.nlm.nih.gov/${dataset.reference_pmid}/" target="_blank" class="text-decoration-none">
+                                    ${dataset.reference_pmid}
+                                </a>
+                            </div>
                         </div>
-                        <button class="btn btn-primary w-100" onclick="viewDataset('${dataset.geo_id}')">
-                            <i class="fas fa-eye me-2"></i>
-                            ${currentLanguage === 'zh' ? '查看详情' : 'View Details'}
-                        </button>
+                        <div class="d-grid gap-2">
+                            <button class="btn btn-primary" onclick="viewDataset('${dataset.geo_id}')">
+                                <i class="fas fa-eye me-2"></i>
+                                ${currentLanguage === 'zh' ? '查看详情' : 'View Details'}
+                            </button>
+                            <a href="${dataset.geo_url}" target="_blank" class="btn btn-outline-primary">
+                                <i class="fas fa-database me-2"></i>
+                                ${currentLanguage === 'zh' ? 'GEO数据库' : 'GEO Database'}
+                            </a>
+                        </div>
                     </div>
                 `;
                 container.appendChild(col);
@@ -905,10 +945,74 @@
 
         // 查看数据集详情
         function viewDataset(geoId) {
-            const message = currentLanguage === 'zh' 
-                ? `查看数据集 ${geoId} 的详细信息\n\n这里将显示:\n- 样本信息\n- 基因列表\n- 表达数据\n- 分析结果\n\n数据存储在GitHub云端，可通过Git LFS下载`
-                : `View detailed information for dataset ${geoId}\n\nThis will show:\n- Sample information\n- Gene list\n- Expression data\n- Analysis results\n\nData stored in GitHub cloud, downloadable via Git LFS`;
-            alert(message);
+            // 创建模态框显示数据集详情
+            const modal = document.createElement('div');
+            modal.className = 'modal fade';
+            modal.id = 'datasetModal';
+            modal.innerHTML = `
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">${geoId} - ${currentLanguage === 'zh' ? '数据集详情' : 'Dataset Details'}</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h6>${currentLanguage === 'zh' ? '基本信息' : 'Basic Information'}</h6>
+                                    <p><strong>${currentLanguage === 'zh' ? 'GEO ID' : 'GEO ID'}:</strong> ${geoId}</p>
+                                    <p><strong>${currentLanguage === 'zh' ? '数据来源' : 'Data Source'}:</strong> NCBI GEO</p>
+                                    <p><strong>${currentLanguage === 'zh' ? '数据类型' : 'Data Type'}:</strong> RNA-seq</p>
+                                    <p><strong>${currentLanguage === 'zh' ? '真实性' : 'Authenticity'}:</strong> 100%真实实验数据</p>
+                                </div>
+                                <div class="col-md-6">
+                                    <h6>${currentLanguage === 'zh' ? '数据文件' : 'Data Files'}</h6>
+                                    <div class="list-group">
+                                        <a href="https://github.com/Max-YUAN-22/NETA/blob/main/data/raw/${geoId}/expression_matrix.csv" target="_blank" class="list-group-item list-group-item-action">
+                                            <i class="fas fa-table me-2"></i>${currentLanguage === 'zh' ? '表达矩阵' : 'Expression Matrix'}
+                                        </a>
+                                        <a href="https://github.com/Max-YUAN-22/NETA/blob/main/data/raw/${geoId}/phenotype_data.csv" target="_blank" class="list-group-item list-group-item-action">
+                                            <i class="fas fa-users me-2"></i>${currentLanguage === 'zh' ? '表型数据' : 'Phenotype Data'}
+                                        </a>
+                                        <a href="https://github.com/Max-YUAN-22/NETA/blob/main/data/raw/${geoId}/dataset_info.csv" target="_blank" class="list-group-item list-group-item-action">
+                                            <i class="fas fa-info-circle me-2"></i>${currentLanguage === 'zh' ? '数据集信息' : 'Dataset Info'}
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <h6>${currentLanguage === 'zh' ? '外部链接' : 'External Links'}</h6>
+                                    <div class="d-flex gap-2">
+                                        <a href="https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=${geoId}" target="_blank" class="btn btn-outline-primary">
+                                            <i class="fas fa-external-link-alt me-2"></i>${currentLanguage === 'zh' ? 'GEO数据库' : 'GEO Database'}
+                                        </a>
+                                        <a href="https://github.com/Max-YUAN-22/NETA/tree/main/data/raw/${geoId}" target="_blank" class="btn btn-outline-secondary">
+                                            <i class="fab fa-github me-2"></i>${currentLanguage === 'zh' ? 'GitHub文件' : 'GitHub Files'}
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">${currentLanguage === 'zh' ? '关闭' : 'Close'}</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            // 添加到页面
+            document.body.appendChild(modal);
+            
+            // 显示模态框
+            const bsModal = new bootstrap.Modal(modal);
+            bsModal.show();
+            
+            // 模态框关闭后移除
+            modal.addEventListener('hidden.bs.modal', function() {
+                document.body.removeChild(modal);
+            });
         }
 
         // 运行分析
