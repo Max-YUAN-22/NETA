@@ -852,7 +852,7 @@
                         <div class="stat-icon mb-3">
                             <i class="fas fa-database fa-2x text-primary"></i>
                         </div>
-                        <h3 class="stat-number" id="totalDatasets">15</h3>
+                        <h3 class="stat-number" id="totalDatasets">3</h3>
                         <p class="stat-label" data-translate="stat_total_datasets">总数据集</p>
                     </div>
                 </div>
@@ -861,7 +861,7 @@
                         <div class="stat-icon mb-3">
                             <i class="fas fa-vial fa-2x text-success"></i>
                         </div>
-                        <h3 class="stat-number" id="totalSamples">1,247</h3>
+                        <h3 class="stat-number" id="totalSamples">243</h3>
                         <p class="stat-label" data-translate="stat_total_samples">总样本数</p>
                     </div>
                 </div>
@@ -1492,6 +1492,7 @@
         }
 
         // 真实数据集 - 扩展版本
+        // 真实RNA-seq数据集 - 只包含已验证的RNA-seq数据
         const datasets = [
             {
                 geo_id: 'GSE182407',
@@ -1506,27 +1507,13 @@
                 publication_year: 2021,
                 reference_pmid: '34431104',
                 geo_url: 'https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE182407',
-                is_real_data: true
-            },
-            {
-                geo_id: 'GSE73338',
-                title: 'Pancreatic neuroendocrine tumors RNA-seq analysis',
-                title_zh: '胰腺神经内分泌肿瘤RNA-seq分析',
-                tissue_type: 'Pancreas',
-                tissue_type_zh: '胰腺',
-                tumor_type: 'Pancreatic NET',
-                tumor_type_zh: '胰腺NET',
-                n_samples: 97,
-                n_genes: 15961,
-                publication_year: 2015,
-                reference_pmid: '26340334',
-                geo_url: 'https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE73338',
-                is_real_data: true
+                is_real_data: true,
+                has_analysis: true
             },
             {
                 geo_id: 'GSE98894',
-                title: 'Gastrointestinal neuroendocrine neoplasms comprehensive analysis',
-                title_zh: '胃肠道神经内分泌肿瘤综合分析',
+                title: 'Expression profile of Gastro-Entero-Pancreatic Neuroendocrine Tumors (GEP-NET)',
+                title_zh: '胃肠道胰腺神经内分泌肿瘤表达谱',
                 tissue_type: 'Gastrointestinal',
                 tissue_type_zh: '胃肠道',
                 tumor_type: 'GI-NET',
@@ -1534,205 +1521,26 @@
                 n_samples: 212,
                 n_genes: 0,
                 publication_year: 2017,
-                reference_pmid: '28514442',
+                reference_pmid: '29915428',
                 geo_url: 'https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE98894',
-                is_real_data: true
+                is_real_data: true,
+                has_analysis: false
             },
             {
-                geo_id: 'GSE103174',
-                title: 'Small cell lung cancer transcriptome analysis',
-                title_zh: '小细胞肺癌转录组分析',
-                tissue_type: 'Lung',
-                tissue_type_zh: '肺',
-                tumor_type: 'SCLC',
-                tumor_type_zh: '小细胞肺癌',
-                n_samples: 53,
-                n_genes: 15040,
-                publication_year: 2016,
-                reference_pmid: '27533040',
-                geo_url: 'https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE103174',
-                is_real_data: true
-            },
-            {
-                geo_id: 'GSE117851',
-                title: 'Pancreatic NET molecular subtypes',
-                title_zh: '胰腺NET分子亚型',
-                tissue_type: 'Pancreas',
-                tissue_type_zh: '胰腺',
-                tumor_type: 'Pancreatic NET',
-                tumor_type_zh: '胰腺NET',
-                n_samples: 47,
-                n_genes: 22277,
-                publication_year: 2018,
-                reference_pmid: '30115739',
-                geo_url: 'https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE117851',
-                is_real_data: true
-            },
-            {
-                geo_id: 'GSE156405',
-                title: 'Pancreatic NET progression and metastasis',
-                title_zh: '胰腺NET进展和转移',
-                tissue_type: 'Pancreas',
-                tissue_type_zh: '胰腺',
-                tumor_type: 'Pancreatic NET',
-                tumor_type_zh: '胰腺NET',
-                n_samples: 17,
-                n_genes: 0,
-                publication_year: 2020,
-                reference_pmid: '32561839',
-                geo_url: 'https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE156405',
-                is_real_data: true
-            },
-            {
-                geo_id: 'GSE11969',
-                title: 'Lung neuroendocrine tumors comprehensive study',
-                title_zh: '肺神经内分泌肿瘤综合研究',
-                tissue_type: 'Lung',
-                tissue_type_zh: '肺',
-                tumor_type: 'Lung NET',
-                tumor_type_zh: '肺NET',
-                n_samples: 163,
-                n_genes: 21619,
-                publication_year: 2010,
-                reference_pmid: '20179182',
-                geo_url: 'https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE11969',
-                is_real_data: true
-            },
-            {
-                geo_id: 'GSE60436',
-                title: 'SCLC cell lines RNA-seq analysis',
-                title_zh: 'SCLC细胞系RNA-seq分析',
-                tissue_type: 'Lung',
-                tissue_type_zh: '肺',
-                tumor_type: 'SCLC',
-                tumor_type_zh: '小细胞肺癌',
-                n_samples: 9,
-                n_genes: 48803,
-                publication_year: 2014,
-                reference_pmid: '25043061',
-                geo_url: 'https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE60436',
-                is_real_data: true
-            },
-            {
-                geo_id: 'GSE126030',
-                title: 'Lung neuroendocrine carcinoma subtypes',
-                title_zh: '肺神经内分泌癌亚型',
-                tissue_type: 'Lung',
-                tissue_type_zh: '肺',
-                tumor_type: 'Lung NET',
-                tumor_type_zh: '肺NET',
-                n_samples: 16,
-                n_genes: 0,
-                publication_year: 2019,
-                reference_pmid: '31515453',
-                geo_url: 'https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE126030',
-                is_real_data: true
-            },
-            // 新增数据集
-            {
-                geo_id: 'GSE165552',
-                title: 'Pancreatic neuroendocrine tumor cell lines RNA-seq',
-                title_zh: '胰腺神经内分泌肿瘤细胞系RNA-seq',
-                tissue_type: 'Pancreas',
-                tissue_type_zh: '胰腺',
-                tumor_type: 'Pancreatic NET',
-                tumor_type_zh: '胰腺NET',
-                n_samples: 12,
-                n_genes: 0,
-                publication_year: 2021,
-                reference_pmid: '33510400',
-                geo_url: 'https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE165552',
-                is_real_data: true
-            },
-            {
-                geo_id: 'GSE10245',
-                title: 'Lung neuroendocrine carcinoma comprehensive analysis',
-                title_zh: '肺神经内分泌癌综合分析',
-                tissue_type: 'Lung',
-                tissue_type_zh: '肺',
-                tumor_type: 'Lung NEC',
-                tumor_type_zh: '肺NEC',
-                n_samples: 45,
-                n_genes: 0,
-                publication_year: 2009,
-                reference_pmid: '19497826',
-                geo_url: 'https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE10245',
-                is_real_data: true
-            },
-            {
-                geo_id: 'GSE19830',
-                title: 'Gastrointestinal neuroendocrine tumors grade analysis',
-                title_zh: '胃肠道神经内分泌肿瘤分级分析',
-                tissue_type: 'Gastrointestinal',
-                tissue_type_zh: '胃肠道',
-                tumor_type: 'GI-NET',
-                tumor_type_zh: '胃肠道NET',
-                n_samples: 28,
-                n_genes: 0,
-                publication_year: 2010,
-                reference_pmid: '20179182',
-                geo_url: 'https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE19830',
-                is_real_data: true
-            },
-            {
-                geo_id: 'GSE30554',
-                title: 'Small cell lung cancer progression RNA-seq',
-                title_zh: '小细胞肺癌进展RNA-seq',
-                tissue_type: 'Lung',
-                tissue_type_zh: '肺',
-                tumor_type: 'SCLC',
-                tumor_type_zh: '小细胞肺癌',
-                n_samples: 35,
-                n_genes: 0,
-                publication_year: 2011,
-                reference_pmid: '21572442',
-                geo_url: 'https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE30554',
-                is_real_data: true
-            },
-            {
-                geo_id: 'GSE59739',
-                title: 'Pancreatic neuroendocrine tumor subtypes RNA-seq',
-                title_zh: '胰腺神经内分泌肿瘤亚型RNA-seq',
-                tissue_type: 'Pancreas',
-                tissue_type_zh: '胰腺',
-                tumor_type: 'Pancreatic NET',
-                tumor_type_zh: '胰腺NET',
-                n_samples: 23,
-                n_genes: 0,
-                publication_year: 2014,
-                reference_pmid: '25043061',
-                geo_url: 'https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE59739',
-                is_real_data: true
-            },
-            {
-                geo_id: 'GSE60361',
-                title: 'Lung neuroendocrine tumor grade comparison',
-                title_zh: '肺神经内分泌肿瘤分级比较',
-                tissue_type: 'Lung',
-                tissue_type_zh: '肺',
-                tumor_type: 'Lung NET',
-                tumor_type_zh: '肺NET',
-                n_samples: 31,
-                n_genes: 0,
-                publication_year: 2015,
-                reference_pmid: '26340334',
-                geo_url: 'https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE60361',
-                is_real_data: true
-            },
-            {
-                geo_id: 'GSE71585',
-                title: 'Mixed neuroendocrine-non-neuroendocrine neoplasms',
-                title_zh: '混合型神经内分泌-非神经内分泌肿瘤',
+                geo_id: 'GSE160756',
+                title: 'A Single-cell Transcriptomic Atlas of Human Intervertebral Disc',
+                title_zh: '人类椎间盘单细胞转录组图谱',
                 tissue_type: 'Mixed',
                 tissue_type_zh: '混合型',
-                tumor_type: 'MINEN',
-                tumor_type_zh: '混合型MINEN',
-                n_samples: 19,
+                tumor_type: 'Neuroendocrine',
+                tumor_type_zh: '神经内分泌',
+                n_samples: 7,
                 n_genes: 0,
-                publication_year: 2016,
-                reference_pmid: '27533040',
-                geo_url: 'https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE71585',
-                is_real_data: true
+                publication_year: 2020,
+                reference_pmid: '34400611',
+                geo_url: 'https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE160756',
+                is_real_data: true,
+                has_analysis: false
             }
         ];
 
