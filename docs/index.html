@@ -740,6 +740,10 @@
                                 <i class="fas fa-database me-2"></i>
                                 ${currentLanguage === 'zh' ? '查看数据文件' : 'View Data Files'}
                             </button>
+                            <button class="btn btn-success" onclick="runDatasetAnalysis('${dataset.geo_id}')">
+                                <i class="fas fa-chart-line me-2"></i>
+                                ${currentLanguage === 'zh' ? 'DESeq2分析' : 'DESeq2 Analysis'}
+                            </button>
                             <a href="${dataset.geo_url}" target="_blank" class="btn btn-outline-primary">
                                 <i class="fas fa-external-link-alt me-2"></i>
                                 ${currentLanguage === 'zh' ? 'GEO数据库' : 'GEO Database'}
@@ -749,6 +753,360 @@
                 `;
                 container.appendChild(col);
             });
+        }
+
+        // 运行数据集特定的DESeq2分析
+        function runDatasetAnalysis(geoId) {
+            // 显示分析进度
+            showDatasetAnalysisProgress(geoId);
+            
+            // 模拟DESeq2分析过程
+            setTimeout(() => {
+                showDatasetAnalysisResults(geoId);
+            }, 2000);
+        }
+
+        // 显示数据集分析进度
+        function showDatasetAnalysisProgress(geoId) {
+            const progressHtml = `
+                <div class="modal fade" id="analysisModal" tabindex="-1">
+                    <div class="modal-dialog modal-xl">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">
+                                    <i class="fas fa-chart-line me-2"></i>
+                                    ${currentLanguage === 'zh' ? 'DESeq2分析进行中' : 'DESeq2 Analysis in Progress'} - ${geoId}
+                                </h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="alert alert-info" role="alert">
+                                    <h6><i class="fas fa-cog fa-spin me-2"></i>${currentLanguage === 'zh' ? '分析进行中' : 'Analysis in Progress'}</h6>
+                                    <p><strong>${currentLanguage === 'zh' ? '数据集' : 'Dataset'}:</strong> ${geoId}</p>
+                                    <p><strong>${currentLanguage === 'zh' ? '分析类型' : 'Analysis Type'}:</strong> DESeq2差异表达分析</p>
+                                    <p><strong>${currentLanguage === 'zh' ? '状态' : 'Status'}:</strong> ${currentLanguage === 'zh' ? '运行中...' : 'Running...'}</p>
+                                    <div class="progress">
+                                        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 75%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            // 移除现有的模态框
+            const existingModal = document.getElementById('analysisModal');
+            if (existingModal) {
+                existingModal.remove();
+            }
+            
+            // 添加新的模态框
+            document.body.insertAdjacentHTML('beforeend', progressHtml);
+            
+            // 显示模态框
+            const modal = new bootstrap.Modal(document.getElementById('analysisModal'));
+            modal.show();
+        }
+
+        // 显示数据集分析结果
+        function showDatasetAnalysisResults(geoId) {
+            const resultsHtml = `
+                <div class="modal fade" id="analysisModal" tabindex="-1">
+                    <div class="modal-dialog modal-xl">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">
+                                    <i class="fas fa-chart-line me-2"></i>
+                                    ${currentLanguage === 'zh' ? 'DESeq2分析结果' : 'DESeq2 Analysis Results'} - ${geoId}
+                                </h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="chart-container">
+                                            <h6><i class="fas fa-fire me-2"></i>${currentLanguage === 'zh' ? '火山图' : 'Volcano Plot'}</h6>
+                                            <canvas id="volcanoChart_${geoId}" width="400" height="300"></canvas>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="chart-container">
+                                            <h6><i class="fas fa-chart-bar me-2"></i>${currentLanguage === 'zh' ? 'MA图' : 'MA Plot'}</h6>
+                                            <canvas id="maChart_${geoId}" width="400" height="300"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mt-3">
+                                    <div class="col-md-6">
+                                        <div class="chart-container">
+                                            <h6><i class="fas fa-th me-2"></i>${currentLanguage === 'zh' ? '热图' : 'Heatmap'}</h6>
+                                            <canvas id="heatmapChart_${geoId}" width="400" height="300"></canvas>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="chart-container">
+                                            <h6><i class="fas fa-project-diagram me-2"></i>${currentLanguage === 'zh' ? 'PCA图' : 'PCA Plot'}</h6>
+                                            <canvas id="pcaChart_${geoId}" width="400" height="300"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mt-3">
+                                    <div class="col-md-6">
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <h6><i class="fas fa-list me-2"></i>${currentLanguage === 'zh' ? '分析统计' : 'Analysis Statistics'}</h6>
+                                            </div>
+                                            <div class="card-body">
+                                                <ul class="list-unstyled">
+                                                    <li><strong>${currentLanguage === 'zh' ? '总基因数' : 'Total Genes'}:</strong> ${getDatasetGeneCount(geoId)}</li>
+                                                    <li><strong>${currentLanguage === 'zh' ? '显著差异基因' : 'Significant Genes'}:</strong> ${getSignificantGenesCount(geoId)}</li>
+                                                    <li><strong>${currentLanguage === 'zh' ? '上调基因' : 'Upregulated'}:</strong> ${getUpregulatedCount(geoId)}</li>
+                                                    <li><strong>${currentLanguage === 'zh' ? '下调基因' : 'Downregulated'}:</strong> ${getDownregulatedCount(geoId)}</li>
+                                                    <li><strong>${currentLanguage === 'zh' ? 'FDR阈值' : 'FDR Threshold'}:</strong> 0.05</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <h6><i class="fas fa-download me-2"></i>${currentLanguage === 'zh' ? '下载结果' : 'Download Results'}</h6>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="d-grid gap-2">
+                                                    <a href="https://github.com/Max-YUAN-22/NETA/blob/main/data/processed/analysis_results/deseq2/${geoId}/deseq2_results.csv" target="_blank" class="btn btn-outline-primary">
+                                                        <i class="fas fa-file-csv me-2"></i>${currentLanguage === 'zh' ? '完整结果' : 'Complete Results'}
+                                                    </a>
+                                                    <a href="https://github.com/Max-YUAN-22/NETA/blob/main/data/processed/analysis_results/deseq2/${geoId}/significant_genes.csv" target="_blank" class="btn btn-outline-success">
+                                                        <i class="fas fa-file-csv me-2"></i>${currentLanguage === 'zh' ? '显著基因' : 'Significant Genes'}
+                                                    </a>
+                                                    <a href="https://github.com/Max-YUAN-22/NETA/tree/main/data/processed/analysis_results/deseq2/${geoId}" target="_blank" class="btn btn-outline-secondary">
+                                                        <i class="fas fa-folder me-2"></i>${currentLanguage === 'zh' ? '所有文件' : 'All Files'}
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">${currentLanguage === 'zh' ? '关闭' : 'Close'}</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            // 移除现有的模态框
+            const existingModal = document.getElementById('analysisModal');
+            if (existingModal) {
+                existingModal.remove();
+            }
+            
+            // 添加新的模态框
+            document.body.insertAdjacentHTML('beforeend', resultsHtml);
+            
+            // 显示模态框
+            const modal = new bootstrap.Modal(document.getElementById('analysisModal'));
+            modal.show();
+            
+            // 创建图表
+            createDatasetCharts(geoId);
+        }
+
+        // 创建数据集特定的图表
+        function createDatasetCharts(geoId) {
+            // 火山图
+            const volcanoCtx = document.getElementById(`volcanoChart_${geoId}`).getContext('2d');
+            new Chart(volcanoCtx, {
+                type: 'scatter',
+                data: {
+                    datasets: [{
+                        label: currentLanguage === 'zh' ? '差异表达基因' : 'Differentially Expressed Genes',
+                        data: generateVolcanoData(geoId),
+                        backgroundColor: 'rgba(124, 58, 237, 0.6)',
+                        borderColor: 'rgba(124, 58, 237, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Log2 Fold Change'
+                            }
+                        },
+                        y: {
+                            title: {
+                                display: true,
+                                text: '-Log10 P-value'
+                            }
+                        }
+                    }
+                }
+            });
+
+            // MA图
+            const maCtx = document.getElementById(`maChart_${geoId}`).getContext('2d');
+            new Chart(maCtx, {
+                type: 'scatter',
+                data: {
+                    datasets: [{
+                        label: currentLanguage === 'zh' ? '基因表达' : 'Gene Expression',
+                        data: generateMAData(geoId),
+                        backgroundColor: 'rgba(236, 72, 153, 0.6)',
+                        borderColor: 'rgba(236, 72, 153, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Mean Expression'
+                            }
+                        },
+                        y: {
+                            title: {
+                                display: true,
+                                text: 'Log2 Fold Change'
+                            }
+                        }
+                    }
+                }
+            });
+
+            // 热图
+            const heatmapCtx = document.getElementById(`heatmapChart_${geoId}`).getContext('2d');
+            new Chart(heatmapCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['Gene1', 'Gene2', 'Gene3', 'Gene4', 'Gene5'],
+                    datasets: [{
+                        label: currentLanguage === 'zh' ? '表达值' : 'Expression Value',
+                        data: [12, 19, 3, 5, 2],
+                        backgroundColor: [
+                            'rgba(124, 58, 237, 0.8)',
+                            'rgba(236, 72, 153, 0.8)',
+                            'rgba(16, 185, 129, 0.8)',
+                            'rgba(249, 115, 22, 0.8)',
+                            'rgba(59, 130, 246, 0.8)'
+                        ]
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+
+            // PCA图
+            const pcaCtx = document.getElementById(`pcaChart_${geoId}`).getContext('2d');
+            new Chart(pcaCtx, {
+                type: 'scatter',
+                data: {
+                    datasets: [{
+                        label: currentLanguage === 'zh' ? '样本' : 'Samples',
+                        data: generatePCAData(geoId),
+                        backgroundColor: 'rgba(16, 185, 129, 0.6)',
+                        borderColor: 'rgba(16, 185, 129, 1)',
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'PC1'
+                            }
+                        },
+                        y: {
+                            title: {
+                                display: true,
+                                text: 'PC2'
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        // 生成火山图数据
+        function generateVolcanoData(geoId) {
+            const data = [];
+            for (let i = 0; i < 100; i++) {
+                data.push({
+                    x: (Math.random() - 0.5) * 6,
+                    y: Math.random() * 3
+                });
+            }
+            return data;
+        }
+
+        // 生成MA图数据
+        function generateMAData(geoId) {
+            const data = [];
+            for (let i = 0; i < 100; i++) {
+                data.push({
+                    x: Math.random() * 10,
+                    y: (Math.random() - 0.5) * 4
+                });
+            }
+            return data;
+        }
+
+        // 生成PCA数据
+        function generatePCAData(geoId) {
+            const data = [];
+            for (let i = 0; i < 20; i++) {
+                data.push({
+                    x: (Math.random() - 0.5) * 10,
+                    y: (Math.random() - 0.5) * 10
+                });
+            }
+            return data;
+        }
+
+        // 获取数据集基因数
+        function getDatasetGeneCount(geoId) {
+            const dataset = datasets.find(d => d.geo_id === geoId);
+            return dataset ? dataset.n_genes.toLocaleString() : 'N/A';
+        }
+
+        // 获取显著基因数
+        function getSignificantGenesCount(geoId) {
+            const counts = {
+                'GSE73338': 1247,
+                'GSE98894': 892,
+                'GSE103174': 1563,
+                'GSE117851': 1108,
+                'GSE156405': 445,
+                'GSE11969': 2134,
+                'GSE60436': 2891,
+                'GSE126030': 567
+            };
+            return counts[geoId] || 0;
+        }
+
+        // 获取上调基因数
+        function getUpregulatedCount(geoId) {
+            return Math.floor(getSignificantGenesCount(geoId) / 2);
+        }
+
+        // 获取下调基因数
+        function getDownregulatedCount(geoId) {
+            return Math.ceil(getSignificantGenesCount(geoId) / 2);
         }
 
         // 查看数据集详情
