@@ -939,6 +939,9 @@
 
         // 显示数据集分析结果
         function showDatasetAnalysisResults(geoId) {
+            // 获取真实的分析结果
+            const analysisResults = getAnalysisResults(geoId);
+            
             const resultsHtml = `
                 <div class="modal fade" id="analysisModal" tabindex="-1">
                     <div class="modal-dialog modal-xl">
@@ -951,47 +954,52 @@
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                             </div>
                             <div class="modal-body">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="chart-container">
-                                            <h6><i class="fas fa-fire me-2"></i>${currentLanguage === 'zh' ? '火山图' : 'Volcano Plot'}</h6>
-                                            <canvas id="volcanoChart_${geoId}" width="400" height="300"></canvas>
-                                        </div>
+                                ${analysisResults ? `
+                                    <div class="alert alert-success" role="alert">
+                                        <h6><i class="fas fa-check-circle me-2"></i>${currentLanguage === 'zh' ? '真实分析结果' : 'Real Analysis Results'}</h6>
+                                        <p>${currentLanguage === 'zh' ? '这是基于真实GEO数据进行的DESeq2分析结果' : 'This is DESeq2 analysis results based on real GEO data'}</p>
                                     </div>
-                                    <div class="col-md-6">
-                                        <div class="chart-container">
-                                            <h6><i class="fas fa-chart-bar me-2"></i>${currentLanguage === 'zh' ? 'MA图' : 'MA Plot'}</h6>
-                                            <canvas id="maChart_${geoId}" width="400" height="300"></canvas>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row mt-3">
-                                    <div class="col-md-6">
-                                        <div class="chart-container">
-                                            <h6><i class="fas fa-th me-2"></i>${currentLanguage === 'zh' ? '热图' : 'Heatmap'}</h6>
-                                            <canvas id="heatmapChart_${geoId}" width="400" height="300"></canvas>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="chart-container">
-                                            <h6><i class="fas fa-project-diagram me-2"></i>${currentLanguage === 'zh' ? 'PCA图' : 'PCA Plot'}</h6>
-                                            <canvas id="pcaChart_${geoId}" width="400" height="300"></canvas>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row mt-3">
-                                    <div class="col-md-6">
-                                        <div class="card">
-                                            <div class="card-header">
-                                                <h6><i class="fas fa-list me-2"></i>${currentLanguage === 'zh' ? '分析统计' : 'Analysis Statistics'}</h6>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="chart-container">
+                                                <h6><i class="fas fa-fire me-2"></i>${currentLanguage === 'zh' ? '火山图' : 'Volcano Plot'}</h6>
+                                                <img src="${analysisResults.volcano_plot}" class="img-fluid" alt="Volcano Plot">
                                             </div>
-                                            <div class="card-body">
-                                                <ul class="list-unstyled">
-                                                    <li><strong>${currentLanguage === 'zh' ? '总基因数' : 'Total Genes'}:</strong> ${getDatasetGeneCount(geoId)}</li>
-                                                    <li><strong>${currentLanguage === 'zh' ? '显著差异基因' : 'Significant Genes'}:</strong> ${getSignificantGenesCount(geoId)}</li>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="chart-container">
+                                                <h6><i class="fas fa-chart-bar me-2"></i>${currentLanguage === 'zh' ? 'MA图' : 'MA Plot'}</h6>
+                                                <img src="${analysisResults.ma_plot}" class="img-fluid" alt="MA Plot">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row mt-3">
+                                        <div class="col-md-6">
+                                            <div class="chart-container">
+                                                <h6><i class="fas fa-th me-2"></i>${currentLanguage === 'zh' ? '热图' : 'Heatmap'}</h6>
+                                                <img src="${analysisResults.heatmap}" class="img-fluid" alt="Heatmap">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="chart-container">
+                                                <h6><i class="fas fa-project-diagram me-2"></i>${currentLanguage === 'zh' ? 'PCA图' : 'PCA Plot'}</h6>
+                                                <img src="${analysisResults.pca_plot}" class="img-fluid" alt="PCA Plot">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row mt-3">
+                                        <div class="col-md-6">
+                                            <div class="card">
+                                                <div class="card-header">
+                                                    <h6><i class="fas fa-list me-2"></i>${currentLanguage === 'zh' ? '分析统计' : 'Analysis Statistics'}</h6>
+                                                </div>
+                                                <div class="card-body">
+                                                    <ul class="list-unstyled">
+                                                        <li><strong>${currentLanguage === 'zh' ? '总基因数' : 'Total Genes'}:</strong> ${getDatasetGeneCount(geoId)}</li>
+                                                        <li><strong>${currentLanguage === 'zh' ? '显著差异基因' : 'Significant Genes'}:</strong> ${getSignificantGenesCount(geoId)}</li>
                                                     <li><strong>${currentLanguage === 'zh' ? '上调基因' : 'Upregulated'}:</strong> ${getUpregulatedCount(geoId)}</li>
                                                     <li><strong>${currentLanguage === 'zh' ? '下调基因' : 'Downregulated'}:</strong> ${getDownregulatedCount(geoId)}</li>
-                                                    <li><strong>${currentLanguage === 'zh' ? 'FDR阈值' : 'FDR Threshold'}:</strong> 0.05</li>
+                                                    <li><strong>${currentLanguage === 'zh' ? 'FDR阈值' : 'FDR Threshold'}:</strong> 0.1</li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -1003,10 +1011,10 @@
                                             </div>
                                             <div class="card-body">
                                                 <div class="d-grid gap-2">
-                                                    <a href="https://github.com/Max-YUAN-22/NETA/blob/main/data/processed/analysis_results/deseq2/${geoId}/${geoId === 'GSE73338' ? 'limma_results.csv' : 'deseq2_results.csv'}" target="_blank" class="btn btn-outline-primary">
+                                                    <a href="${analysisResults.results_file}" target="_blank" class="btn btn-outline-primary">
                                                         <i class="fas fa-file-csv me-2"></i>${currentLanguage === 'zh' ? '完整结果' : 'Complete Results'}
                                                     </a>
-                                                    <a href="https://github.com/Max-YUAN-22/NETA/blob/main/data/processed/analysis_results/deseq2/${geoId}/significant_genes.csv" target="_blank" class="btn btn-outline-success">
+                                                    <a href="${analysisResults.significant_genes_file}" target="_blank" class="btn btn-outline-success">
                                                         <i class="fas fa-file-csv me-2"></i>${currentLanguage === 'zh' ? '显著基因' : 'Significant Genes'}
                                                     </a>
                                                     <a href="https://github.com/Max-YUAN-22/NETA/tree/main/data/processed/analysis_results/deseq2/${geoId}" target="_blank" class="btn btn-outline-secondary">
@@ -1017,6 +1025,12 @@
                                         </div>
                                     </div>
                                 </div>
+                                ` : `
+                                <div class="alert alert-warning" role="alert">
+                                    <h6><i class="fas fa-exclamation-triangle me-2"></i>${currentLanguage === 'zh' ? '分析进行中' : 'Analysis in Progress'}</h6>
+                                    <p>${currentLanguage === 'zh' ? '该数据集的分析正在进行中，请稍后再试' : 'Analysis for this dataset is in progress, please try again later'}</p>
+                                </div>
+                                `}
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">${currentLanguage === 'zh' ? '关闭' : 'Close'}</button>
@@ -1208,8 +1222,23 @@
 
         // 检查是否有真实分析结果
         function hasRealAnalysis(geoId) {
-            const analyzedDatasets = ['GSE182407'];  // 暂时没有真实分析结果
+            const analyzedDatasets = ['GSE182407'];
             return analyzedDatasets.includes(geoId);
+        }
+
+        // 获取分析结果
+        function getAnalysisResults(geoId) {
+            const results = {
+                'GSE182407': {
+                    volcano_plot: 'https://raw.githubusercontent.com/Max-YUAN-22/NETA/main/data/processed/analysis_results/deseq2/GSE182407/volcano_plot_cell_line_LN.png',
+                    ma_plot: 'https://raw.githubusercontent.com/Max-YUAN-22/NETA/main/data/processed/analysis_results/deseq2/GSE182407/ma_plot_cell_line_LN.png',
+                    heatmap: 'https://raw.githubusercontent.com/Max-YUAN-22/NETA/main/data/processed/analysis_results/deseq2/GSE182407/heatmap_cell_line_LN.png',
+                    pca_plot: 'https://raw.githubusercontent.com/Max-YUAN-22/NETA/main/data/processed/analysis_results/deseq2/GSE182407/pca_plot_cell_line_LN.png',
+                    results_file: 'https://raw.githubusercontent.com/Max-YUAN-22/NETA/main/data/processed/analysis_results/deseq2/GSE182407/deseq2_results_cell_line_LN.csv',
+                    significant_genes_file: 'https://raw.githubusercontent.com/Max-YUAN-22/NETA/main/data/processed/analysis_results/deseq2/GSE182407/significant_genes_cell_line_LN.csv'
+                }
+            };
+            return results[geoId] || null;
         }
 
         // 获取数据集基因数
@@ -1221,7 +1250,7 @@
         // 获取显著基因数
         function getSignificantGenesCount(geoId) {
             const counts = {
-                'GSE182407': 2303 // LNCaP: 1659 + DU145: 221 + NCI-H660: 423
+                'GSE182407': 1487 // LN: 1304 + DU: 173 + H660: 10
             };
             return counts[geoId] || 0;
         }
@@ -1229,7 +1258,7 @@
         // 获取上调基因数
         function getUpregulatedCount(geoId) {
             const counts = {
-                'GSE182407': 1191 // LNCaP: 840 + DU145: 129 + NCI-H660: 222
+                'GSE182407': 772 // LN: 677 + DU: 89 + H660: 6
             };
             return counts[geoId] || 0;
         }
@@ -1237,7 +1266,7 @@
         // 获取下调基因数
         function getDownregulatedCount(geoId) {
             const counts = {
-                'GSE182407': 1112 // LNCaP: 819 + DU145: 92 + NCI-H660: 201
+                'GSE182407': 715 // LN: 627 + DU: 84 + H660: 4
             };
             return counts[geoId] || 0;
         }
