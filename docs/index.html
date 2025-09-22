@@ -316,19 +316,19 @@
             <div class="row mb-5">
                 <div class="col-md-3">
                     <div class="stat-card">
-                        <div class="stat-number">15</div>
+                        <div class="stat-number">16</div>
                         <div class="stat-label" data-translate="stat_datasets">数据集</div>
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="stat-card">
-                        <div class="stat-number">755</div>
+                        <div class="stat-number">779</div>
                         <div class="stat-label" data-translate="stat_samples">样本</div>
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="stat-card">
-                        <div class="stat-number">48,803</div>
+                        <div class="stat-number">51,166</div>
                         <div class="stat-label" data-translate="stat_genes">基因</div>
                     </div>
                 </div>
@@ -532,6 +532,21 @@
 
         // 真实数据集 - 扩展版本
         const datasets = [
+            {
+                geo_id: 'GSE182407',
+                title: 'Reciprocal YAP1 loss and INSM1 expression in neuroendocrine prostate cancer',
+                title_zh: '前列腺神经内分泌癌中YAP1缺失和INSM1表达的相互调节',
+                tissue_type: 'Prostate',
+                tissue_type_zh: '前列腺',
+                tumor_type: 'Neuroendocrine Prostate Cancer',
+                tumor_type_zh: '前列腺神经内分泌癌',
+                n_samples: 24,
+                n_genes: 27363,
+                publication_year: 2021,
+                reference_pmid: '34431104',
+                geo_url: 'https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE182407',
+                is_real_data: true
+            },
             {
                 geo_id: 'GSE73338',
                 title: 'Pancreatic neuroendocrine tumors RNA-seq analysis',
@@ -1193,7 +1208,7 @@
 
         // 检查是否有真实分析结果
         function hasRealAnalysis(geoId) {
-            const analyzedDatasets = [];  // 暂时没有真实分析结果
+            const analyzedDatasets = ['GSE182407'];  // 暂时没有真实分析结果
             return analyzedDatasets.includes(geoId);
         }
 
@@ -1205,17 +1220,26 @@
 
         // 获取显著基因数
         function getSignificantGenesCount(geoId) {
-            return 0;  // 暂时没有真实分析结果
+            const counts = {
+                'GSE182407': 2303 // LNCaP: 1659 + DU145: 221 + NCI-H660: 423
+            };
+            return counts[geoId] || 0;
         }
 
         // 获取上调基因数
         function getUpregulatedCount(geoId) {
-            return 0;  // 暂时没有真实分析结果
+            const counts = {
+                'GSE182407': 1191 // LNCaP: 840 + DU145: 129 + NCI-H660: 222
+            };
+            return counts[geoId] || 0;
         }
 
         // 获取下调基因数
         function getDownregulatedCount(geoId) {
-            return 0;  // 暂时没有真实分析结果
+            const counts = {
+                'GSE182407': 1112 // LNCaP: 819 + DU145: 92 + NCI-H660: 201
+            };
+            return counts[geoId] || 0;
         }
 
         // 查看数据集详情
