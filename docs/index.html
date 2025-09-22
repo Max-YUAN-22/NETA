@@ -1193,7 +1193,7 @@
 
         // 检查是否有真实分析结果
         function hasRealAnalysis(geoId) {
-            const analyzedDatasets = ['GSE73338'];  // 有真实分析结果的数据集
+            const analyzedDatasets = [];  // 暂时没有真实分析结果
             return analyzedDatasets.includes(geoId);
         }
 
@@ -1203,28 +1203,19 @@
             return dataset ? dataset.n_genes.toLocaleString() : 'N/A';
         }
 
-        // 获取显著基因数 - 基于真实分析结果
+        // 获取显著基因数
         function getSignificantGenesCount(geoId) {
-            const counts = {
-                'GSE73338': 1771  // 真实分析结果：1771个显著差异基因
-            };
-            return counts[geoId] || 0;
+            return 0;  // 暂时没有真实分析结果
         }
 
-        // 获取上调基因数 - 基于真实分析结果
+        // 获取上调基因数
         function getUpregulatedCount(geoId) {
-            const counts = {
-                'GSE73338': 1303  // 真实分析结果：1303个上调基因
-            };
-            return counts[geoId] || Math.floor(getSignificantGenesCount(geoId) / 2);
+            return 0;  // 暂时没有真实分析结果
         }
 
-        // 获取下调基因数 - 基于真实分析结果
+        // 获取下调基因数
         function getDownregulatedCount(geoId) {
-            const counts = {
-                'GSE73338': 468   // 真实分析结果：468个下调基因
-            };
-            return counts[geoId] || Math.ceil(getSignificantGenesCount(geoId) / 2);
+            return 0;  // 暂时没有真实分析结果
         }
 
         // 查看数据集详情
