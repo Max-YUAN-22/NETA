@@ -1,0 +1,25 @@
+# Site settings
+title: "NETA: Neuroendocrine Tumor Atlas"
+description: "泛神经内分泌癌Bulk-RNA-seq数据库 - 神经内分泌肿瘤转录组图谱"
+theme: minima  # Default Jekyll theme
+
+# Plugins (indent with 2 spaces!)
+plugins:
+  - jekyll-remote-theme
+
+# Repository info
+repository: your-username/neta  # 请替换为您的GitHub用户名
+
+# Display settings
+show_downloads: false
+
+# Custom CSS
+sass:
+  sass_dir: assets/css
+  style: compressed
+
+# Exclude files
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - README.md

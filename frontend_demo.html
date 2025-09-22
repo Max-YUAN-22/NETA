@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NETA: Neuroendocrine Tumor Atlas</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root {
+            --primary-purple: #7c3aed;
+            --primary-purple-dark: #6d28d9;
+            --secondary-pink: #ec4899;
+            --accent-orange: #f97316;
+            --accent-green: #10b981;
+            --neutral-50: #f8fafc;
+            --neutral-100: #f1f5f9;
+            --neutral-200: #e2e8f0;
+            --neutral-300: #cbd5e1;
+            --neutral-600: #475569;
+            --neutral-700: #334155;
+            --neutral-800: #1e293b;
+            --neutral-900: #0f172a;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, var(--neutral-50) 0%, #ffffff 100%);
+            color: var(--neutral-700);
+        }
+
+        .navbar {
+            background: linear-gradient(135deg, var(--primary-purple) 0%, var(--secondary-pink) 100%);
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.5rem;
+        }
+
+        .hero-section {
+            background: linear-gradient(135deg, rgba(124, 58, 237, 0.03) 0%, rgba(236, 72, 153, 0.05) 100%);
+            padding: 4rem 0;
+            border-bottom: 1px solid var(--neutral-200);
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary-purple) 0%, var(--secondary-pink) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1.5rem;
+        }
+
+        .stat-card {
+            background: white;
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+            border: 1px solid var(--neutral-200);
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--primary-purple);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: var(--neutral-600);
+            font-size: 1.125rem;
+            margin: 0;
+        }
+
+        .feature-card {
+            background: white;
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+            border: 1px solid var(--neutral-200);
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+        }
+
+        .feature-icon {
+            width: 3rem;
+            height: 3rem;
+            background: linear-gradient(135deg, var(--primary-purple), var(--secondary-pink));
+            border-radius: 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .dataset-card {
+            background: white;
+            border-radius: 1rem;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+            border: 1px solid var(--neutral-200);
+            transition: all 0.3s ease;
+            margin-bottom: 1.5rem;
+        }
+
+        .dataset-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+        }
+
+        .dataset-header {
+            display: flex;
+            justify-content: between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .dataset-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--neutral-800);
+            margin: 0;
+        }
+
+        .dataset-geo {
+            background: var(--neutral-100);
+            padding: 0.25rem 0.75rem;
+            border-radius: 0.5rem;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.875rem;
+            color: var(--primary-purple);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-purple), var(--secondary-pink));
+            border: none;
+            border-radius: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        }
+
+        .chart-container {
+            background: white;
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+            border: 1px solid var(--neutral-200);
+            margin-bottom: 2rem;
+        }
+
+        .footer {
+            background: var(--neutral-900);
+            color: var(--neutral-300);
+            padding: 3rem 0;
+            margin-top: 4rem;
+        }
+
+        .nav-link {
+            color: white !important;
+            font-weight: 500;
+            margin: 0 0.5rem;
+            transition: all 0.2s ease;
+        }
+
+        .nav-link:hover {
+            color: rgba(255, 255, 255, 0.8) !important;
+            transform: translateY(-1px);
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: var(--neutral-800);
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 4rem;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-purple), var(--secondary-pink));
+            border-radius: 2px;
+        }
+
+        .loading-spinner {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 200px;
+        }
+
+        .spinner-border {
+            color: var(--primary-purple);
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .stat-number {
+                font-size: 2rem;
+            }
+            
+            .feature-card {
+                margin-bottom: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-dna me-2"></i>
+                NETA: Neuroendocrine Tumor Atlas
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#home">首页</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#datasets">数据集</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#analysis">分析</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#statistics">统计</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 首页部分 -->
+    <section id="home" class="hero-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto text-center">
+                    <h1 class="hero-title">NETA: Neuroendocrine Tumor Atlas</h1>
+                    <p class="lead fs-5 mb-4">
+                        泛神经内分泌癌Bulk-RNA-seq数据库，为神经内分泌肿瘤研究提供全面的转录组分析平台。
+                        通过整合多源数据，我们构建了一个强大的生物信息学工具，连接<strong>临床</strong>、<strong>基础研究</strong>和<strong>计算生物学</strong>。
+                    </p>
+                    <div class="d-flex justify-content-center gap-3">
+                        <button class="btn btn-primary btn-lg" onclick="showSection('datasets')">
+                            <i class="fas fa-database me-2"></i>浏览数据集
+                        </button>
+                        <button class="btn btn-outline-primary btn-lg" onclick="showSection('analysis')">
+                            <i class="fas fa-chart-line me-2"></i>开始分析
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 统计概览 -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row mb-5">
+                <div class="col-md-3">
+                    <div class="stat-card">
+                        <div class="stat-number">8</div>
+                        <div class="stat-label">数据集</div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stat-card">
+                        <div class="stat-number">142</div>
+                        <div class="stat-label">样本</div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stat-card">
+                        <div class="stat-number">20,000</div>
+                        <div class="stat-label">基因</div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stat-card">
+                        <div class="stat-number">2.8M</div>
+                        <div class="stat-label">表达数据</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 数据集部分 -->
+    <section id="datasets" class="py-5" style="display: none;">
+        <div class="container">
+            <h2 class="section-title">数据集列表</h2>
+            
+            <!-- 筛选器 -->
+            <div class="row mb-4">
+                <div class="col-md-4">
+                    <select class="form-select" id="tissueFilter">
+                        <option value="">所有组织类型</option>
+                        <option value="Pancreas">胰腺</option>
+                        <option value="Lung">肺</option>
+                        <option value="Gastrointestinal">胃肠道</option>
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <select class="form-select" id="tumorFilter">
+                        <option value="">所有肿瘤类型</option>
+                        <option value="Pancreatic NET">胰腺NET</option>
+                        <option value="SCLC">小细胞肺癌</option>
+                        <option value="GI-NET">胃肠道NET</option>
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <button class="btn btn-primary w-100" onclick="filterDatasets()">
+                        <i class="fas fa-filter me-2"></i>筛选
+                    </button>
+                </div>
+            </div>
+
+            <!-- 数据集卡片 -->
+            <div class="row" id="datasetsContainer">
+                <!-- 数据集卡片将通过JavaScript动态生成 -->
+            </div>
+        </div>
+    </section>
+
+    <!-- 分析部分 -->
+    <section id="analysis" class="py-5" style="display: none;">
+        <div class="container">
+            <h2 class="section-title">数据分析</h2>
+            
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-chart-bar"></i>
+                        </div>
+                        <h5>差异表达分析</h5>
+                        <p>比较不同组间的基因表达差异，识别显著差异表达基因。</p>
+                        <button class="btn btn-primary" onclick="runAnalysis('differential_expression')">
+                            开始分析
+                        </button>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-heartbeat"></i>
+                        </div>
+                        <h5>生存分析</h5>
+                        <p>分析基因表达与患者生存时间的关系，评估预后价值。</p>
+                        <button class="btn btn-primary" onclick="runAnalysis('survival')">
+                            开始分析
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-4">
+                <div class="col-md-6">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-project-diagram"></i>
+                        </div>
+                        <h5>通路分析</h5>
+                        <p>进行基因集富集分析，识别相关的生物学通路。</p>
+                        <button class="btn btn-primary" onclick="runAnalysis('pathway')">
+                            开始分析
+                        </button>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-search"></i>
+                        </div>
+                        <h5>基因搜索</h5>
+                        <p>搜索特定基因的表达模式，查看跨数据集的表达情况。</p>
+                        <button class="btn btn-primary" onclick="runAnalysis('gene_search')">
+                            开始搜索
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 分析结果展示区域 -->
+            <div class="row mt-5" id="analysisResults" style="display: none;">
+                <div class="col-md-12">
+                    <div class="chart-container">
+                        <h5>分析结果</h5>
+                        <canvas id="analysisChart" width="400" height="200"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 统计部分 -->
+    <section id="statistics" class="py-5" style="display: none;">
+        <div class="container">
+            <h2 class="section-title">数据库统计</h2>
+            
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="chart-container">
+                        <h5>组织类型分布</h5>
+                        <canvas id="tissueChart" width="400" height="300"></canvas>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="chart-container">
+                        <h5>肿瘤类型分布</h5>
+                        <canvas id="tumorChart" width="400" height="300"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="chart-container">
+                        <h5>发表年份趋势</h5>
+                        <canvas id="yearChart" width="800" height="300"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <p class="mb-0">
+                        <strong>NETA项目 | 神经内分泌肿瘤研究平台</strong><br>
+                        连接神经内分泌肿瘤生物学与计算创新<br>
+                        <a href="mailto:your-email@example.com" class="text-light">your-email@example.com</a> | 
+                        <a href="https://github.com/your-username/neta" target="_blank" class="text-light">GitHub Repository</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // 模拟数据集
+        const datasets = [
+            {
+                geo_id: 'GSE73338',
+                title: 'Pancreatic neuroendocrine tumors RNA-seq analysis',
+                tissue_type: 'Pancreas',
+                tumor_type: 'Pancreatic NET',
+                n_samples: 15,
+                n_genes: 20000,
+                publication_year: 2015,
+                reference_pmid: '26340334'
+            },
+            {
+                geo_id: 'GSE98894',
+                title: 'Gastrointestinal neuroendocrine neoplasms comprehensive analysis',
+                tissue_type: 'Gastrointestinal',
+                tumor_type: 'GI-NET',
+                n_samples: 25,
+                n_genes: 20000,
+                publication_year: 2017,
+                reference_pmid: '28514442'
+            },
+            {
+                geo_id: 'GSE103174',
+                title: 'Small cell lung cancer transcriptome analysis',
+                tissue_type: 'Lung',
+                tumor_type: 'SCLC',
+                n_samples: 20,
+                n_genes: 20000,
+                publication_year: 2016,
+                reference_pmid: '27533040'
+            },
+            {
+                geo_id: 'GSE117851',
+                title: 'Pancreatic NET molecular subtypes',
+                tissue_type: 'Pancreas',
+                tumor_type: 'Pancreatic NET',
+                n_samples: 18,
+                n_genes: 20000,
+                publication_year: 2018,
+                reference_pmid: '30115739'
+            },
+            {
+                geo_id: 'GSE156405',
+                title: 'Pancreatic NET progression and metastasis',
+                tissue_type: 'Pancreas',
+                tumor_type: 'Pancreatic NET',
+                n_samples: 22,
+                n_genes: 20000,
+                publication_year: 2020,
+                reference_pmid: '32561839'
+            },
+            {
+                geo_id: 'GSE11969',
+                title: 'Lung neuroendocrine tumors comprehensive study',
+                tissue_type: 'Lung',
+                tumor_type: 'Lung NET',
+                n_samples: 12,
+                n_genes: 20000,
+                publication_year: 2010,
+                reference_pmid: '20179182'
+            },
+            {
+                geo_id: 'GSE60436',
+                title: 'SCLC cell lines RNA-seq analysis',
+                tissue_type: 'Lung',
+                tumor_type: 'SCLC',
+                n_samples: 16,
+                n_genes: 20000,
+                publication_year: 2014,
+                reference_pmid: '25043061'
+            },
+            {
+                geo_id: 'GSE126030',
+                title: 'Lung neuroendocrine carcinoma subtypes',
+                tissue_type: 'Lung',
+                tumor_type: 'Lung NET',
+                n_samples: 14,
+                n_genes: 20000,
+                publication_year: 2019,
+                reference_pmid: '31515453'
+            }
+        ];
+
+        // 显示指定部分
+        function showSection(sectionId) {
+            // 隐藏所有部分
+            document.querySelectorAll('section[id]').forEach(section => {
+                section.style.display = 'none';
+            });
+            
+            // 显示指定部分
+            const targetSection = document.getElementById(sectionId);
+            if (targetSection) {
+                targetSection.style.display = 'block';
+                
+                // 如果是数据集部分，加载数据集
+                if (sectionId === 'datasets') {
+                    loadDatasets();
+                }
+                
+                // 如果是统计部分，加载图表
+                if (sectionId === 'statistics') {
+                    loadCharts();
+                }
+            }
+        }
+
+        // 加载数据集
+        function loadDatasets() {
+            const container = document.getElementById('datasetsContainer');
+            container.innerHTML = '';
+            
+            datasets.forEach(dataset => {
+                const col = document.createElement('div');
+                col.className = 'col-md-6 col-lg-4';
+                col.innerHTML = `
+                    <div class="dataset-card">
+                        <div class="dataset-header">
+                            <h5 class="dataset-title">${dataset.title}</h5>
+                        </div>
+                        <div class="dataset-geo mb-3">${dataset.geo_id}</div>
+                        <div class="row mb-3">
+                            <div class="col-6">
+                                <small class="text-muted">组织类型</small><br>
+                                <strong>${dataset.tissue_type}</strong>
+                            </div>
+                            <div class="col-6">
+                                <small class="text-muted">肿瘤类型</small><br>
+                                <strong>${dataset.tumor_type}</strong>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-6">
+                                <small class="text-muted">样本数</small><br>
+                                <strong>${dataset.n_samples}</strong>
+                            </div>
+                            <div class="col-6">
+                                <small class="text-muted">发表年份</small><br>
+                                <strong>${dataset.publication_year}</strong>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary w-100" onclick="viewDataset('${dataset.geo_id}')">
+                            <i class="fas fa-eye me-2"></i>查看详情
+                        </button>
+                    </div>
+                `;
+                container.appendChild(col);
+            });
+        }
+
+        // 筛选数据集
+        function filterDatasets() {
+            const tissueFilter = document.getElementById('tissueFilter').value;
+            const tumorFilter = document.getElementById('tumorFilter').value;
+            
+            const filteredDatasets = datasets.filter(dataset => {
+                return (!tissueFilter || dataset.tissue_type === tissueFilter) &&
+                       (!tumorFilter || dataset.tumor_type === tumorFilter);
+            });
+            
+            const container = document.getElementById('datasetsContainer');
+            container.innerHTML = '';
+            
+            filteredDatasets.forEach(dataset => {
+                const col = document.createElement('div');
+                col.className = 'col-md-6 col-lg-4';
+                col.innerHTML = `
+                    <div class="dataset-card">
+                        <div class="dataset-header">
+                            <h5 class="dataset-title">${dataset.title}</h5>
+                        </div>
+                        <div class="dataset-geo mb-3">${dataset.geo_id}</div>
+                        <div class="row mb-3">
+                            <div class="col-6">
+                                <small class="text-muted">组织类型</small><br>
+                                <strong>${dataset.tissue_type}</strong>
+                            </div>
+                            <div class="col-6">
+                                <small class="text-muted">肿瘤类型</small><br>
+                                <strong>${dataset.tumor_type}</strong>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-6">
+                                <small class="text-muted">样本数</small><br>
+                                <strong>${dataset.n_samples}</strong>
+                            </div>
+                            <div class="col-6">
+                                <small class="text-muted">发表年份</small><br>
+                                <strong>${dataset.publication_year}</strong>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary w-100" onclick="viewDataset('${dataset.geo_id}')">
+                            <i class="fas fa-eye me-2"></i>查看详情
+                        </button>
+                    </div>
+                `;
+                container.appendChild(col);
+            });
+        }
+
+        // 查看数据集详情
+        function viewDataset(geoId) {
+            alert(`查看数据集 ${geoId} 的详细信息\n\n这里将显示:\n- 样本信息\n- 基因列表\n- 表达数据\n- 分析结果`);
+        }
+
+        // 运行分析
+        function runAnalysis(analysisType) {
+            const resultsDiv = document.getElementById('analysisResults');
+            resultsDiv.style.display = 'block';
+            
+            // 模拟分析过程
+            const chartCanvas = document.getElementById('analysisChart');
+            const ctx = chartCanvas.getContext('2d');
+            
+            // 清除之前的图表
+            ctx.clearRect(0, 0, chartCanvas.width, chartCanvas.height);
+            
+            // 创建新的图表
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['基因1', '基因2', '基因3', '基因4', '基因5'],
+                    datasets: [{
+                        label: '表达值',
+                        data: [12, 19, 3, 5, 2],
+                        backgroundColor: 'rgba(124, 58, 237, 0.8)',
+                        borderColor: 'rgba(124, 58, 237, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+            
+            alert(`${analysisType} 分析已开始\n\n分析类型: ${analysisType}\n状态: 运行中...\n预计完成时间: 2-5分钟`);
+        }
+
+        // 加载图表
+        function loadCharts() {
+            // 组织类型分布图
+            const tissueCtx = document.getElementById('tissueChart').getContext('2d');
+            new Chart(tissueCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['胰腺', '肺', '胃肠道'],
+                    datasets: [{
+                        data: [3, 4, 1],
+                        backgroundColor: [
+                            'rgba(124, 58, 237, 0.8)',
+                            'rgba(236, 72, 153, 0.8)',
+                            'rgba(16, 185, 129, 0.8)'
+                        ]
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'bottom'
+                        }
+                    }
+                }
+            });
+
+            // 肿瘤类型分布图
+            const tumorCtx = document.getElementById('tumorChart').getContext('2d');
+            new Chart(tumorCtx, {
+                type: 'pie',
+                data: {
+                    labels: ['胰腺NET', 'SCLC', 'GI-NET', '肺NET'],
+                    datasets: [{
+                        data: [3, 2, 1, 2],
+                        backgroundColor: [
+                            'rgba(124, 58, 237, 0.8)',
+                            'rgba(236, 72, 153, 0.8)',
+                            'rgba(16, 185, 129, 0.8)',
+                            'rgba(249, 115, 22, 0.8)'
+                        ]
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'bottom'
+                        }
+                    }
+                }
+            });
+
+            // 发表年份趋势图
+            const yearCtx = document.getElementById('yearChart').getContext('2d');
+            new Chart(yearCtx, {
+                type: 'line',
+                data: {
+                    labels: ['2010', '2014', '2015', '2016', '2017', '2018', '2019', '2020'],
+                    datasets: [{
+                        label: '数据集数量',
+                        data: [1, 1, 1, 1, 1, 1, 1, 1],
+                        borderColor: 'rgba(124, 58, 237, 1)',
+                        backgroundColor: 'rgba(124, 58, 237, 0.1)',
+                        tension: 0.4,
+                        fill: true
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                stepSize: 1
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        // 页面加载完成后初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            // 默认显示首页
+            showSection('home');
+        });
+    </script>
+</body>
+</html>
