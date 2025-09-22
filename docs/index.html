@@ -420,6 +420,77 @@
             transform: translateY(-2px);
         }
 
+        /* 质量评估详细样式 */
+        .quality-detail {
+            background: var(--neutral-50);
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            border: 1px solid var(--neutral-200);
+            height: 100%;
+        }
+
+        .quality-detail h6 {
+            color: var(--primary-purple);
+            margin-bottom: 1rem;
+            font-weight: bold;
+        }
+
+        .quality-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .quality-list li {
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .quality-process {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .process-step {
+            flex: 1;
+            min-width: 200px;
+            display: flex;
+            align-items: flex-start;
+            background: var(--neutral-50);
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            border: 1px solid var(--neutral-200);
+        }
+
+        .step-number {
+            width: 40px;
+            height: 40px;
+            background: var(--primary-purple);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 1rem;
+            flex-shrink: 0;
+        }
+
+        .step-content h6 {
+            color: var(--primary-purple);
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+
+        .step-content p {
+            color: var(--neutral-600);
+            font-size: 0.9rem;
+            margin: 0;
+        }
+
         .dataset-card {
             background: white;
             border-radius: 1rem;
@@ -845,7 +916,7 @@
                     <div class="quality-assessment">
                         <h4 data-translate="quality_assessment_title">数据质量评估</h4>
                         <div class="row">
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 <div class="quality-metric">
                                     <div class="metric-header">
                                         <i class="fas fa-check-circle text-success me-2"></i>
@@ -855,7 +926,7 @@
                                     <div class="metric-desc" data-translate="quality_rnaseq_desc">所有数据集均为Bulk RNA-seq</div>
                                 </div>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 <div class="quality-metric">
                                     <div class="metric-header">
                                         <i class="fas fa-check-circle text-success me-2"></i>
@@ -865,7 +936,7 @@
                                     <div class="metric-desc" data-translate="quality_replicates_desc">每组至少3个生物学重复</div>
                                 </div>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 <div class="quality-metric">
                                     <div class="metric-header">
                                         <i class="fas fa-check-circle text-success me-2"></i>
@@ -873,6 +944,82 @@
                                     </div>
                                     <div class="metric-value">100%</div>
                                     <div class="metric-desc" data-translate="quality_counts_desc">提供原始计数矩阵</div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="quality-metric">
+                                    <div class="metric-header">
+                                        <i class="fas fa-check-circle text-success me-2"></i>
+                                        <strong data-translate="quality_wildtype">野生型样本</strong>
+                                    </div>
+                                    <div class="metric-value">100%</div>
+                                    <div class="metric-desc" data-translate="quality_wildtype_desc">无基因干预的对照样本</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- 详细质量指标 -->
+                        <div class="row mt-4">
+                            <div class="col-md-12">
+                                <h5 data-translate="quality_detailed_title">详细质量指标</h5>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="quality-detail">
+                                            <h6 data-translate="quality_data_source">数据来源</h6>
+                                            <ul class="quality-list">
+                                                <li><i class="fas fa-database text-primary me-2"></i><span data-translate="quality_geo_source">GEO数据库官方数据</span></li>
+                                                <li><i class="fas fa-certificate text-success me-2"></i><span data-translate="quality_peer_reviewed">同行评议期刊发表</span></li>
+                                                <li><i class="fas fa-shield-alt text-info me-2"></i><span data-translate="quality_curated">人工审核和验证</span></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="quality-detail">
+                                            <h6 data-translate="quality_validation">验证标准</h6>
+                                            <ul class="quality-list">
+                                                <li><i class="fas fa-filter text-warning me-2"></i><span data-translate="quality_filter_criteria">严格筛选标准</span></li>
+                                                <li><i class="fas fa-microscope text-danger me-2"></i><span data-translate="quality_experimental">实验设计验证</span></li>
+                                                <li><i class="fas fa-chart-line text-success me-2"></i><span data-translate="quality_statistical">统计分析验证</span></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 质量保证流程 -->
+                        <div class="row mt-4">
+                            <div class="col-md-12">
+                                <h5 data-translate="quality_process_title">质量保证流程</h5>
+                                <div class="quality-process">
+                                    <div class="process-step">
+                                        <div class="step-number">1</div>
+                                        <div class="step-content">
+                                            <h6 data-translate="step_search">数据搜索</h6>
+                                            <p data-translate="step_search_desc">使用关键词搜索GEO数据库中的神经内分泌肿瘤RNA-seq数据集</p>
+                                        </div>
+                                    </div>
+                                    <div class="process-step">
+                                        <div class="step-number">2</div>
+                                        <div class="step-content">
+                                            <h6 data-translate="step_validate">数据验证</h6>
+                                            <p data-translate="step_validate_desc">验证数据集类型、样本数量、实验设计和数据完整性</p>
+                                        </div>
+                                    </div>
+                                    <div class="process-step">
+                                        <div class="step-number">3</div>
+                                        <div class="step-content">
+                                            <h6 data-translate="step_process">数据处理</h6>
+                                            <p data-translate="step_process_desc">下载原始数据，提取计数矩阵，进行质量控制和标准化</p>
+                                        </div>
+                                    </div>
+                                    <div class="process-step">
+                                        <div class="step-number">4</div>
+                                        <div class="step-content">
+                                            <h6 data-translate="step_analyze">分析验证</h6>
+                                            <p data-translate="step_analyze_desc">使用DESeq2进行差异表达分析，生成SCI质量的图表和结果</p>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -1158,6 +1305,26 @@
                 quality_replicates_desc: "每组至少3个生物学重复",
                 quality_counts: "原始计数",
                 quality_counts_desc: "提供原始计数矩阵",
+                quality_wildtype: "野生型样本",
+                quality_wildtype_desc: "无基因干预的对照样本",
+                quality_detailed_title: "详细质量指标",
+                quality_data_source: "数据来源",
+                quality_geo_source: "GEO数据库官方数据",
+                quality_peer_reviewed: "同行评议期刊发表",
+                quality_curated: "人工审核和验证",
+                quality_validation: "验证标准",
+                quality_filter_criteria: "严格筛选标准",
+                quality_experimental: "实验设计验证",
+                quality_statistical: "统计分析验证",
+                quality_process_title: "质量保证流程",
+                step_search: "数据搜索",
+                step_search_desc: "使用关键词搜索GEO数据库中的神经内分泌肿瘤RNA-seq数据集",
+                step_validate: "数据验证",
+                step_validate_desc: "验证数据集类型、样本数量、实验设计和数据完整性",
+                step_process: "数据处理",
+                step_process_desc: "下载原始数据，提取计数矩阵，进行质量控制和标准化",
+                step_analyze: "分析验证",
+                step_analyze_desc: "使用DESeq2进行差异表达分析，生成SCI质量的图表和结果",
                 analysis_summary_title: "分析结果统计",
                 result_de_genes: "差异表达基因",
                 result_de_genes_desc: "GSE182407中发现的显著差异基因",
@@ -1234,6 +1401,26 @@
                 quality_replicates_desc: "At least 3 biological replicates per group",
                 quality_counts: "Raw Counts",
                 quality_counts_desc: "Raw count matrices provided",
+                quality_wildtype: "Wild-type Samples",
+                quality_wildtype_desc: "Control samples without gene intervention",
+                quality_detailed_title: "Detailed Quality Metrics",
+                quality_data_source: "Data Source",
+                quality_geo_source: "Official GEO database data",
+                quality_peer_reviewed: "Peer-reviewed journal publications",
+                quality_curated: "Manual curation and validation",
+                quality_validation: "Validation Standards",
+                quality_filter_criteria: "Strict filtering criteria",
+                quality_experimental: "Experimental design validation",
+                quality_statistical: "Statistical analysis validation",
+                quality_process_title: "Quality Assurance Process",
+                step_search: "Data Search",
+                step_search_desc: "Search GEO database for neuroendocrine tumor RNA-seq datasets using keywords",
+                step_validate: "Data Validation",
+                step_validate_desc: "Validate dataset type, sample count, experimental design and data integrity",
+                step_process: "Data Processing",
+                step_process_desc: "Download raw data, extract count matrices, perform quality control and normalization",
+                step_analyze: "Analysis Validation",
+                step_analyze_desc: "Perform differential expression analysis using DESeq2, generate SCI-quality plots and results",
                 analysis_summary_title: "Analysis Results Summary",
                 result_de_genes: "Differentially Expressed Genes",
                 result_de_genes_desc: "Significant genes found in GSE182407",
