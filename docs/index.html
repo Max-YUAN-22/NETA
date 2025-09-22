@@ -988,7 +988,7 @@
                                             </div>
                                             <div class="card-body">
                                                 <div class="d-grid gap-2">
-                                                    <a href="https://github.com/Max-YUAN-22/NETA/blob/main/data/processed/analysis_results/deseq2/${geoId}/deseq2_results.csv" target="_blank" class="btn btn-outline-primary">
+                                                    <a href="https://github.com/Max-YUAN-22/NETA/blob/main/data/processed/analysis_results/deseq2/${geoId}/${geoId === 'GSE73338' ? 'limma_results.csv' : 'deseq2_results.csv'}" target="_blank" class="btn btn-outline-primary">
                                                         <i class="fas fa-file-csv me-2"></i>${currentLanguage === 'zh' ? '完整结果' : 'Complete Results'}
                                                     </a>
                                                     <a href="https://github.com/Max-YUAN-22/NETA/blob/main/data/processed/analysis_results/deseq2/${geoId}/significant_genes.csv" target="_blank" class="btn btn-outline-success">
@@ -1206,19 +1206,25 @@
         // 获取显著基因数 - 基于真实分析结果
         function getSignificantGenesCount(geoId) {
             const counts = {
-                'GSE73338': 0  // 真实分析结果，需要从CSV文件读取
+                'GSE73338': 1771  // 真实分析结果：1771个显著差异基因
             };
             return counts[geoId] || 0;
         }
 
-        // 获取上调基因数
+        // 获取上调基因数 - 基于真实分析结果
         function getUpregulatedCount(geoId) {
-            return Math.floor(getSignificantGenesCount(geoId) / 2);
+            const counts = {
+                'GSE73338': 1303  // 真实分析结果：1303个上调基因
+            };
+            return counts[geoId] || Math.floor(getSignificantGenesCount(geoId) / 2);
         }
 
-        // 获取下调基因数
+        // 获取下调基因数 - 基于真实分析结果
         function getDownregulatedCount(geoId) {
-            return Math.ceil(getSignificantGenesCount(geoId) / 2);
+            const counts = {
+                'GSE73338': 468   // 真实分析结果：468个下调基因
+            };
+            return counts[geoId] || Math.ceil(getSignificantGenesCount(geoId) / 2);
         }
 
         // 查看数据集详情
