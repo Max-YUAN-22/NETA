@@ -929,11 +929,11 @@
                         </div>
                         <div class="d-grid gap-2">
                             <button class="btn btn-primary" onclick="viewDataset('${dataset.geo_id}')">
-                                <i class="fas fa-eye me-2"></i>
-                                ${currentLanguage === 'zh' ? '查看详情' : 'View Details'}
+                                <i class="fas fa-database me-2"></i>
+                                ${currentLanguage === 'zh' ? '查看数据文件' : 'View Data Files'}
                             </button>
                             <a href="${dataset.geo_url}" target="_blank" class="btn btn-outline-primary">
-                                <i class="fas fa-database me-2"></i>
+                                <i class="fas fa-external-link-alt me-2"></i>
                                 ${currentLanguage === 'zh' ? 'GEO数据库' : 'GEO Database'}
                             </a>
                         </div>
@@ -945,74 +945,9 @@
 
         // 查看数据集详情
         function viewDataset(geoId) {
-            // 创建模态框显示数据集详情
-            const modal = document.createElement('div');
-            modal.className = 'modal fade';
-            modal.id = 'datasetModal';
-            modal.innerHTML = `
-                <div class="modal-dialog modal-lg">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title">${geoId} - ${currentLanguage === 'zh' ? '数据集详情' : 'Dataset Details'}</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <h6>${currentLanguage === 'zh' ? '基本信息' : 'Basic Information'}</h6>
-                                    <p><strong>${currentLanguage === 'zh' ? 'GEO ID' : 'GEO ID'}:</strong> ${geoId}</p>
-                                    <p><strong>${currentLanguage === 'zh' ? '数据来源' : 'Data Source'}:</strong> NCBI GEO</p>
-                                    <p><strong>${currentLanguage === 'zh' ? '数据类型' : 'Data Type'}:</strong> RNA-seq</p>
-                                    <p><strong>${currentLanguage === 'zh' ? '真实性' : 'Authenticity'}:</strong> 100%真实实验数据</p>
-                                </div>
-                                <div class="col-md-6">
-                                    <h6>${currentLanguage === 'zh' ? '数据文件' : 'Data Files'}</h6>
-                                    <div class="list-group">
-                                        <a href="https://github.com/Max-YUAN-22/NETA/blob/main/data/raw/${geoId}/expression_matrix.csv" target="_blank" class="list-group-item list-group-item-action">
-                                            <i class="fas fa-table me-2"></i>${currentLanguage === 'zh' ? '表达矩阵' : 'Expression Matrix'}
-                                        </a>
-                                        <a href="https://github.com/Max-YUAN-22/NETA/blob/main/data/raw/${geoId}/phenotype_data.csv" target="_blank" class="list-group-item list-group-item-action">
-                                            <i class="fas fa-users me-2"></i>${currentLanguage === 'zh' ? '表型数据' : 'Phenotype Data'}
-                                        </a>
-                                        <a href="https://github.com/Max-YUAN-22/NETA/blob/main/data/raw/${geoId}/dataset_info.csv" target="_blank" class="list-group-item list-group-item-action">
-                                            <i class="fas fa-info-circle me-2"></i>${currentLanguage === 'zh' ? '数据集信息' : 'Dataset Info'}
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <hr>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <h6>${currentLanguage === 'zh' ? '外部链接' : 'External Links'}</h6>
-                                    <div class="d-flex gap-2">
-                                        <a href="https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=${geoId}" target="_blank" class="btn btn-outline-primary">
-                                            <i class="fas fa-external-link-alt me-2"></i>${currentLanguage === 'zh' ? 'GEO数据库' : 'GEO Database'}
-                                        </a>
-                                        <a href="https://github.com/Max-YUAN-22/NETA/tree/main/data/raw/${geoId}" target="_blank" class="btn btn-outline-secondary">
-                                            <i class="fab fa-github me-2"></i>${currentLanguage === 'zh' ? 'GitHub文件' : 'GitHub Files'}
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">${currentLanguage === 'zh' ? '关闭' : 'Close'}</button>
-                        </div>
-                    </div>
-                </div>
-            `;
-            
-            // 添加到页面
-            document.body.appendChild(modal);
-            
-            // 显示模态框
-            const bsModal = new bootstrap.Modal(modal);
-            bsModal.show();
-            
-            // 模态框关闭后移除
-            modal.addEventListener('hidden.bs.modal', function() {
-                document.body.removeChild(modal);
-            });
+            // 直接跳转到GitHub查看数据文件
+            const githubUrl = `https://github.com/Max-YUAN-22/NETA/tree/main/data/raw/${geoId}`;
+            window.open(githubUrl, '_blank');
         }
 
         // 运行分析
