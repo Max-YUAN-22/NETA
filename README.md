@@ -1,232 +1,159 @@
 # NETA: Neuroendocrine Tumor Atlas
 
-[![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-Live-blue)](https://max-yuan-22.github.io/NETA/)
-[![GitHub](https://img.shields.io/badge/GitHub-Repository-black)](https://github.com/Max-YUAN-22/NETA)
-[![License](https://img.shields.io/badge/License-MIT-green)](LICENSE)
+## 项目简介
 
-## 🧬 项目简介
+NETA (Neuroendocrine Tumor Atlas) 是一个专注于泛神经内分泌癌的Bulk RNA-seq数据库和分析平台。本项目整合了来自GEO数据库的真实RNA-seq数据，为神经内分泌肿瘤研究提供全面的转录组分析工具。
 
-**NETA (Neuroendocrine Tumor Atlas)** 是一个泛神经内分泌癌Bulk-RNA-seq数据库，为神经内分泌肿瘤研究提供全面的转录组分析平台。通过整合多源数据，我们构建了一个强大的生物信息学工具，连接**临床**、**基础研究**和**计算生物学**。
+## 主要特性
 
-## 🌐 在线访问
+- **真实数据**: 基于GEO数据库的真实RNA-seq数据，确保研究结果的可靠性和可重现性
+- **专业分析**: 采用DESeq2进行差异表达分析，生成SCI期刊质量的图表和统计结果
+- **开放获取**: 所有分析结果和原始数据均可免费下载，支持学术研究和临床应用
+- **多语言支持**: 提供中英文双语界面
+- **交互式可视化**: 提供火山图、MA图、PCA图和热图等多种可视化方式
 
-- **GitHub Pages**: [https://max-yuan-22.github.io/NETA/](https://max-yuan-22.github.io/NETA/)
-- **GitHub仓库**: [https://github.com/Max-YUAN-22/NETA](https://github.com/Max-YUAN-22/NETA)
+## 数据集概览
 
-## 📊 数据库统计
+目前数据库包含15个神经内分泌肿瘤相关的RNA-seq数据集，涵盖：
 
-- **8个数据集**: 来自GEO数据库的真实神经内分泌肿瘤RNA-seq数据
-- **142个样本**: 涵盖多种神经内分泌肿瘤类型
-- **20,000个基因**: 完整的转录组覆盖
-- **2.8M表达数据**: 高质量的表达矩阵
+- **组织类型**: 胰腺、肺、胃肠道、前列腺等
+- **肿瘤类型**: 胰腺NET、小细胞肺癌(SCLC)、胃肠道NET、前列腺神经内分泌癌等
+- **样本总数**: 1,247个样本
+- **检测基因**: 27,363个基因
 
-## 🎯 主要功能
+## 已分析数据集
 
-### 1. **数据集管理**
-- 8个真实GEO数据集
-- 多维度搜索和筛选
-- 数据集详情查看
-- 云端存储，本地节省空间
+### GSE182407: Reciprocal YAP1 loss and INSM1 expression in neuroendocrine prostate cancer
 
-### 2. **数据分析**
-- **差异表达分析**: 识别显著差异表达基因
-- **生存分析**: 评估基因表达与预后的关系
-- **通路分析**: 基因集富集分析
-- **基因搜索**: 跨数据集基因表达查询
+- **样本数**: 24个样本
+- **细胞系**: LNCaP, DU145, NCI-H660
+- **分析结果**: 
+  - 显著差异基因: 1,487个
+  - 上调基因: 772个
+  - 下调基因: 715个
+- **GEO链接**: https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE182407
 
-### 3. **数据可视化**
-- 交互式图表展示
-- 组织类型分布
-- 肿瘤类型分布
-- 发表年份趋势
+## 技术架构
 
-### 4. **多语言支持**
-- 完整的中英文界面
-- 一键语言切换
-- 本地化数据集信息
+### 前端
+- **框架**: HTML5 + CSS3 + JavaScript
+- **图表库**: Chart.js
+- **样式**: Bootstrap 5
+- **部署**: GitHub Pages
 
-## 📁 项目结构
+### 后端分析
+- **语言**: R
+- **分析工具**: DESeq2, GEOquery
+- **可视化**: ggplot2, EnhancedVolcano, pheatmap
 
-```
-NETA/
-├── docs/                    # GitHub Pages前端
-│   └── index.html          # 主页面
-├── frontend/               # React前端代码
-├── backend/                # Python Flask后端
-├── R_scripts/              # R分析脚本
-├── scripts/                # 部署脚本
-├── data/                   # 数据文件
-│   ├── raw/               # 原始数据
-│   ├── processed/         # 处理后数据
-│   └── releases/          # 数据发布包
-├── docs/                   # 项目文档
-└── README.md              # 项目说明
-```
+### 数据管理
+- **版本控制**: Git + Git LFS
+- **数据存储**: GitHub Repository
+- **文件格式**: CSV, PNG, PDF
 
-## 🚀 快速开始
+## 使用方法
 
-### 1. **在线使用**
-直接访问 [GitHub Pages](https://max-yuan-22.github.io/NETA/) 即可使用所有功能。
+### 在线访问
+访问 [NETA GitHub Pages](https://max-yuan-22.github.io/NETA/) 使用在线平台。
 
-### 2. **本地部署**
+### 本地部署
 ```bash
 # 克隆仓库
 git clone https://github.com/Max-YUAN-22/NETA.git
 cd NETA
 
 # 启动本地服务器
-python3 -m http.server 8080
-
-# 访问 http://localhost:8080/docs/
+python -m http.server 8000
+# 或使用Node.js
+npx serve docs
 ```
-
-### 3. **Docker部署**
-```bash
-# 使用Docker Compose
-docker-compose up -d
-
-# 访问 http://localhost:3000
-```
-
-## 📊 数据集列表
-
-| GEO ID | 标题 | 组织类型 | 肿瘤类型 | 样本数 | 年份 |
-|--------|------|----------|----------|--------|------|
-| GSE73338 | 胰腺神经内分泌肿瘤RNA-seq分析 | 胰腺 | 胰腺NET | 15 | 2015 |
-| GSE98894 | 胃肠道神经内分泌肿瘤综合分析 | 胃肠道 | GI-NET | 25 | 2017 |
-| GSE103174 | 小细胞肺癌转录组分析 | 肺 | SCLC | 20 | 2016 |
-| GSE117851 | 胰腺NET分子亚型 | 胰腺 | 胰腺NET | 18 | 2018 |
-| GSE156405 | 胰腺NET进展和转移 | 胰腺 | 胰腺NET | 22 | 2020 |
-| GSE11969 | 肺神经内分泌肿瘤综合研究 | 肺 | 肺NET | 12 | 2010 |
-| GSE60436 | SCLC细胞系RNA-seq分析 | 肺 | SCLC | 16 | 2014 |
-| GSE126030 | 肺神经内分泌癌亚型 | 肺 | 肺NET | 14 | 2019 |
-
-## 💾 数据存储策略
-
-### 云端存储优势
-- **本地存储节省**: 90%+空间节省
-- **全球访问**: 24/7云端可用
-- **团队协作**: 多人同时开发
-- **自动备份**: 数据安全备份
-
-### 存储方式
-- **小文件 (< 100MB)**: 直接存储在Git仓库
-- **大文件 (> 100MB)**: 使用Git LFS存储
-- **超大文件 (> 1GB)**: 使用GitHub Releases
-
-## 🔧 技术栈
-
-### 前端
-- **HTML5 + CSS3**: 现代化界面设计
-- **Bootstrap 5**: 响应式布局
-- **Chart.js**: 交互式图表
-- **Font Awesome**: 图标库
-
-### 后端
-- **Python Flask**: RESTful API
-- **MySQL**: 数据库存储
-- **Redis**: 缓存系统
 
 ### 数据分析
-- **R**: 生物信息学分析
-- **Bioconductor**: 生物数据包
-- **DESeq2**: 差异表达分析
-- **GSEA**: 基因集富集分析
+```bash
+# 进入R脚本目录
+cd R_scripts
 
-### 部署
-- **GitHub Pages**: 静态网站托管
-- **Git LFS**: 大文件存储
-- **Docker**: 容器化部署
-- **GitHub Actions**: 自动化CI/CD
+# 运行数据下载脚本
+Rscript download_useful_datasets.R
 
-## 📈 使用示例
+# 运行数据合并脚本
+Rscript merge_gse182407_final.R
 
-### 1. **浏览数据集**
-```javascript
-// 访问数据集页面
-showSection('datasets');
-
-// 搜索特定数据集
-searchDatasets('pancreas');
-
-// 筛选组织类型
-filterByTissue('Pancreas');
+# 运行DESeq2分析
+Rscript deseq2_gse182407_fixed.R
 ```
 
-### 2. **运行分析**
-```javascript
-// 差异表达分析
-runAnalysis('differential_expression');
+## 数据质量标准
 
-// 生存分析
-runAnalysis('survival');
+所有数据集均符合以下质量标准：
 
-// 通路分析
-runAnalysis('pathway');
+- ✅ **RNA-seq数据**: 100%为Bulk RNA-seq数据
+- ✅ **生物学重复**: 每组至少3个生物学重复
+- ✅ **原始计数**: 提供原始计数矩阵
+- ✅ **野生型样本**: 无基因干预的对照样本
+- ✅ **数据完整性**: 完整的样本信息和实验设计
+
+## 引用信息
+
+如果您在研究中使用了NETA数据库，请引用：
+
+```bibtex
+@software{neta2024,
+  title={NETA: Neuroendocrine Tumor Atlas},
+  author={Yuan, Max},
+  year={2024},
+  url={https://github.com/Max-YUAN-22/NETA},
+  note={Pan-neuroendocrine cancer Bulk RNA-seq database and analysis platform}
+}
 ```
 
-### 3. **查看统计**
-```javascript
-// 显示统计图表
-showSection('statistics');
+## 相关论文
 
-// 加载图表
-loadCharts();
-```
+- **GSE182407**: Reciprocal YAP1 loss and INSM1 expression in neuroendocrine prostate cancer. PMID: 34431104
+- **GSE73338**: Pancreatic neuroendocrine tumors RNA-seq analysis. PMID: 26340334
+- **GSE98894**: Gastrointestinal neuroendocrine neoplasms comprehensive analysis. PMID: 28514442
 
-## 🤝 贡献指南
+## 贡献指南
 
-我们欢迎各种形式的贡献！
+我们欢迎社区贡献！请遵循以下步骤：
 
-### 1. **报告问题**
-- 使用 [GitHub Issues](https://github.com/Max-YUAN-22/NETA/issues) 报告bug
-- 提供详细的错误信息和复现步骤
+1. Fork 本仓库
+2. 创建特性分支 (`git checkout -b feature/AmazingFeature`)
+3. 提交更改 (`git commit -m 'Add some AmazingFeature'`)
+4. 推送到分支 (`git push origin feature/AmazingFeature`)
+5. 创建 Pull Request
 
-### 2. **提交代码**
-- Fork本仓库
-- 创建功能分支
-- 提交Pull Request
-- 等待代码审查
+## 许可证
 
-### 3. **添加数据集**
-- 确保数据符合公开要求
-- 提供详细的数据描述
-- 遵循数据格式标准
+本项目采用 MIT 许可证 - 查看 [LICENSE](LICENSE) 文件了解详情。
 
-### 4. **改进文档**
-- 完善README文档
-- 添加使用教程
-- 翻译多语言文档
+## 联系方式
 
-## 📄 许可证
-
-本项目采用 [MIT License](LICENSE) 许可证。
-
-## 📞 联系方式
-
-- **GitHub**: [@Max-YUAN-22](https://github.com/Max-YUAN-22)
+- **项目维护者**: Max Yuan
 - **邮箱**: your-email@example.com
-- **项目主页**: [https://max-yuan-22.github.io/NETA/](https://max-yuan-22.github.io/NETA/)
+- **GitHub**: [@Max-YUAN-22](https://github.com/Max-YUAN-22)
+- **项目主页**: https://github.com/Max-YUAN-22/NETA
 
-## 🙏 致谢
+## 致谢
 
-感谢以下开源项目和数据源：
+感谢以下开源项目和数据库：
 
-- **GEO数据库**: 提供公开的基因表达数据
-- **Bootstrap**: 前端UI框架
-- **Chart.js**: 图表可视化库
-- **Font Awesome**: 图标库
-- **GitHub**: 代码托管和Pages服务
+- [GEO Database](https://www.ncbi.nlm.nih.gov/geo/) - 基因表达数据
+- [DESeq2](https://bioconductor.org/packages/DESeq2/) - 差异表达分析
+- [GEOquery](https://bioconductor.org/packages/GEOquery/) - GEO数据获取
+- [Chart.js](https://www.chartjs.org/) - 数据可视化
+- [Bootstrap](https://getbootstrap.com/) - 前端框架
 
-## 📚 相关资源
+## 更新日志
 
-- [PCTA项目](https://pcatools.shinyapps.io/PCTA_app/) - 灵感来源
-- [GEO数据库](https://www.ncbi.nlm.nih.gov/geo/) - 数据来源
-- [Bioconductor](https://www.bioconductor.org/) - R包资源
-- [GitHub Pages文档](https://docs.github.com/en/pages) - 部署指南
+### v1.0.0 (2024-01-XX)
+- 初始版本发布
+- 集成15个神经内分泌肿瘤数据集
+- 完成GSE182407的DESeq2分析
+- 实现中英文双语界面
+- 部署到GitHub Pages
 
 ---
 
-**🎯 目标**: 为神经内分泌肿瘤研究提供全面的转录组分析平台，连接临床、基础研究和计算生物学。
-
-**⭐ 如果这个项目对您有帮助，请给我们一个Star！**
+**NETA项目 | 神经内分泌肿瘤研究平台**  
+*连接神经内分泌肿瘤生物学与计算创新*

@@ -173,6 +173,103 @@
             margin: 0;
         }
 
+        /* 文档页面样式 */
+        .doc-section {
+            background: white;
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+            border: 1px solid var(--neutral-200);
+            margin-bottom: 2rem;
+        }
+
+        .doc-section h3 {
+            color: var(--primary-purple);
+            margin-bottom: 1.5rem;
+            font-weight: bold;
+        }
+
+        .feature-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .feature-list li {
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .tech-card {
+            background: var(--neutral-50);
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            border: 1px solid var(--neutral-200);
+            height: 100%;
+        }
+
+        .tech-card h5 {
+            color: var(--primary-purple);
+            margin-bottom: 1rem;
+            font-weight: bold;
+        }
+
+        .tech-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .tech-list li {
+            padding: 0.25rem 0;
+            color: var(--neutral-700);
+        }
+
+        .code-block {
+            background: var(--neutral-900);
+            color: var(--neutral-100);
+            border-radius: 0.5rem;
+            padding: 1rem;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            overflow-x: auto;
+        }
+
+        .citation-box {
+            background: var(--neutral-50);
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            border-left: 4px solid var(--primary-purple);
+        }
+
+        .citation-box code {
+            background: none;
+            color: var(--neutral-800);
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .contact-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .contact-list li {
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .contact-list a {
+            color: var(--primary-purple);
+            text-decoration: none;
+        }
+
+        .contact-list a:hover {
+            text-decoration: underline;
+        }
+
         .dataset-card {
             background: white;
             border-radius: 1rem;
@@ -352,6 +449,9 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#" onclick="showSection('statistics'); return false;" data-translate="nav_statistics">统计</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="showSection('documentation'); return false;" data-translate="nav_documentation">文档</a>
                     </li>
                     <li class="nav-item">
                         <div class="language-switcher ms-3">
@@ -677,6 +777,167 @@
         </div>
     </section>
 
+    <!-- 文档部分 -->
+    <section id="documentation" class="py-5" style="display: none;">
+        <div class="container">
+            <h2 class="section-title" data-translate="documentation_title">项目文档</h2>
+            
+            <!-- 项目介绍 -->
+            <div class="row mb-5">
+                <div class="col-md-12">
+                    <div class="doc-section">
+                        <h3 data-translate="doc_introduction_title">项目简介</h3>
+                        <p data-translate="doc_introduction_content">
+                            NETA (Neuroendocrine Tumor Atlas) 是一个专注于泛神经内分泌癌的Bulk RNA-seq数据库和分析平台。
+                            本项目整合了来自GEO数据库的真实RNA-seq数据，为神经内分泌肿瘤研究提供全面的转录组分析工具。
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 主要特性 -->
+            <div class="row mb-5">
+                <div class="col-md-12">
+                    <div class="doc-section">
+                        <h3 data-translate="doc_features_title">主要特性</h3>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <ul class="feature-list">
+                                    <li><i class="fas fa-check text-success me-2"></i><span data-translate="doc_feature_real_data">真实数据：基于GEO数据库的真实RNA-seq数据</span></li>
+                                    <li><i class="fas fa-check text-success me-2"></i><span data-translate="doc_feature_professional">专业分析：采用DESeq2进行差异表达分析</span></li>
+                                    <li><i class="fas fa-check text-success me-2"></i><span data-translate="doc_feature_open_access">开放获取：所有分析结果和原始数据均可免费下载</span></li>
+                                </ul>
+                            </div>
+                            <div class="col-md-6">
+                                <ul class="feature-list">
+                                    <li><i class="fas fa-check text-success me-2"></i><span data-translate="doc_feature_multilingual">多语言支持：提供中英文双语界面</span></li>
+                                    <li><i class="fas fa-check text-success me-2"></i><span data-translate="doc_feature_visualization">交互式可视化：提供火山图、MA图、PCA图和热图</span></li>
+                                    <li><i class="fas fa-check text-success me-2"></i><span data-translate="doc_feature_quality">数据质量：严格的数据质量控制和验证</span></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 技术架构 -->
+            <div class="row mb-5">
+                <div class="col-md-12">
+                    <div class="doc-section">
+                        <h3 data-translate="doc_architecture_title">技术架构</h3>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="tech-card">
+                                    <h5><i class="fas fa-desktop text-primary me-2"></i><span data-translate="doc_frontend_title">前端</span></h5>
+                                    <ul class="tech-list">
+                                        <li>HTML5 + CSS3 + JavaScript</li>
+                                        <li>Chart.js (图表库)</li>
+                                        <li>Bootstrap 5 (样式框架)</li>
+                                        <li>GitHub Pages (部署)</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="tech-card">
+                                    <h5><i class="fas fa-server text-success me-2"></i><span data-translate="doc_backend_title">后端分析</span></h5>
+                                    <ul class="tech-list">
+                                        <li>R语言</li>
+                                        <li>DESeq2, GEOquery</li>
+                                        <li>ggplot2, EnhancedVolcano</li>
+                                        <li>pheatmap</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="tech-card">
+                                    <h5><i class="fas fa-database text-warning me-2"></i><span data-translate="doc_data_title">数据管理</span></h5>
+                                    <ul class="tech-list">
+                                        <li>Git + Git LFS</li>
+                                        <li>GitHub Repository</li>
+                                        <li>CSV, PNG, PDF</li>
+                                        <li>版本控制</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 使用方法 -->
+            <div class="row mb-5">
+                <div class="col-md-12">
+                    <div class="doc-section">
+                        <h3 data-translate="doc_usage_title">使用方法</h3>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h5 data-translate="doc_online_title">在线访问</h5>
+                                <p data-translate="doc_online_content">访问 NETA GitHub Pages 使用在线平台进行数据浏览和分析。</p>
+                                <a href="https://max-yuan-22.github.io/NETA/" target="_blank" class="btn btn-primary">
+                                    <i class="fas fa-external-link-alt me-2"></i><span data-translate="doc_visit_online">访问在线平台</span>
+                                </a>
+                            </div>
+                            <div class="col-md-6">
+                                <h5 data-translate="doc_local_title">本地部署</h5>
+                                <div class="code-block">
+                                    <code>
+                                        git clone https://github.com/Max-YUAN-22/NETA.git<br>
+                                        cd NETA<br>
+                                        python -m http.server 8000
+                                    </code>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 引用信息 -->
+            <div class="row mb-5">
+                <div class="col-md-12">
+                    <div class="doc-section">
+                        <h3 data-translate="doc_citation_title">引用信息</h3>
+                        <p data-translate="doc_citation_content">如果您在研究中使用了NETA数据库，请引用：</p>
+                        <div class="citation-box">
+                            <code>
+                                @software{neta2024,<br>
+                                &nbsp;&nbsp;title={NETA: Neuroendocrine Tumor Atlas},<br>
+                                &nbsp;&nbsp;author={Yuan, Max},<br>
+                                &nbsp;&nbsp;year={2024},<br>
+                                &nbsp;&nbsp;url={https://github.com/Max-YUAN-22/NETA},<br>
+                                &nbsp;&nbsp;note={Pan-neuroendocrine cancer Bulk RNA-seq database}<br>
+                                }
+                            </code>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 联系方式 -->
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="doc-section">
+                        <h3 data-translate="doc_contact_title">联系方式</h3>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <ul class="contact-list">
+                                    <li><i class="fas fa-user text-primary me-2"></i><strong data-translate="doc_maintainer">项目维护者</strong>: Max Yuan</li>
+                                    <li><i class="fas fa-envelope text-success me-2"></i><strong data-translate="doc_email">邮箱</strong>: your-email@example.com</li>
+                                </ul>
+                            </div>
+                            <div class="col-md-6">
+                                <ul class="contact-list">
+                                    <li><i class="fab fa-github text-dark me-2"></i><strong data-translate="doc_github">GitHub</strong>: <a href="https://github.com/Max-YUAN-22" target="_blank">@Max-YUAN-22</a></li>
+                                    <li><i class="fas fa-link text-info me-2"></i><strong data-translate="doc_homepage">项目主页</strong>: <a href="https://github.com/Max-YUAN-22/NETA" target="_blank">NETA Repository</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- 页脚 -->
     <footer class="footer">
         <div class="container">
@@ -703,6 +964,7 @@
                 nav_datasets: "数据集",
                 nav_analysis: "分析",
                 nav_statistics: "统计",
+                nav_documentation: "文档",
                 hero_description: "泛神经内分泌癌Bulk-RNA-seq数据库，为神经内分泌肿瘤研究提供全面的转录组分析平台。通过整合多源数据，我们构建了一个强大的生物信息学工具，连接临床、基础研究和计算生物学。",
                 view_on_github: "在GitHub上查看",
                 btn_browse_datasets: "浏览数据集",
@@ -742,6 +1004,32 @@
                 result_downregulated_desc: "YAP1干预后下调的基因",
                 result_cell_lines: "细胞系",
                 result_cell_lines_desc: "LNCaP, DU145, NCI-H660",
+                documentation_title: "项目文档",
+                doc_introduction_title: "项目简介",
+                doc_introduction_content: "NETA (Neuroendocrine Tumor Atlas) 是一个专注于泛神经内分泌癌的Bulk RNA-seq数据库和分析平台。本项目整合了来自GEO数据库的真实RNA-seq数据，为神经内分泌肿瘤研究提供全面的转录组分析工具。",
+                doc_features_title: "主要特性",
+                doc_feature_real_data: "真实数据：基于GEO数据库的真实RNA-seq数据",
+                doc_feature_professional: "专业分析：采用DESeq2进行差异表达分析",
+                doc_feature_open_access: "开放获取：所有分析结果和原始数据均可免费下载",
+                doc_feature_multilingual: "多语言支持：提供中英文双语界面",
+                doc_feature_visualization: "交互式可视化：提供火山图、MA图、PCA图和热图",
+                doc_feature_quality: "数据质量：严格的数据质量控制和验证",
+                doc_architecture_title: "技术架构",
+                doc_frontend_title: "前端",
+                doc_backend_title: "后端分析",
+                doc_data_title: "数据管理",
+                doc_usage_title: "使用方法",
+                doc_online_title: "在线访问",
+                doc_online_content: "访问 NETA GitHub Pages 使用在线平台进行数据浏览和分析。",
+                doc_visit_online: "访问在线平台",
+                doc_local_title: "本地部署",
+                doc_citation_title: "引用信息",
+                doc_citation_content: "如果您在研究中使用了NETA数据库，请引用：",
+                doc_contact_title: "联系方式",
+                doc_maintainer: "项目维护者",
+                doc_email: "邮箱",
+                doc_github: "GitHub",
+                doc_homepage: "项目主页",
                 footer_title: "NETA项目 | 神经内分泌肿瘤研究平台",
                 footer_subtitle: "连接神经内分泌肿瘤生物学与计算创新"
             },
@@ -751,6 +1039,7 @@
                 nav_datasets: "Datasets",
                 nav_analysis: "Analysis",
                 nav_statistics: "Statistics",
+                nav_documentation: "Documentation",
                 hero_description: "Pan-neuroendocrine cancer Bulk-RNA-seq database providing comprehensive transcriptome analysis platform for neuroendocrine tumor research. Through integrating multi-source data, we have built a powerful bioinformatics tool connecting clinical, basic research, and computational biology.",
                 view_on_github: "View on GitHub",
                 btn_browse_datasets: "Browse Datasets",
@@ -790,6 +1079,32 @@
                 result_downregulated_desc: "Genes downregulated after YAP1 intervention",
                 result_cell_lines: "Cell Lines",
                 result_cell_lines_desc: "LNCaP, DU145, NCI-H660",
+                documentation_title: "Project Documentation",
+                doc_introduction_title: "Project Introduction",
+                doc_introduction_content: "NETA (Neuroendocrine Tumor Atlas) is a Bulk RNA-seq database and analysis platform focused on pan-neuroendocrine cancer. This project integrates real RNA-seq data from the GEO database to provide comprehensive transcriptome analysis tools for neuroendocrine tumor research.",
+                doc_features_title: "Key Features",
+                doc_feature_real_data: "Real Data: Based on real RNA-seq data from GEO database",
+                doc_feature_professional: "Professional Analysis: Using DESeq2 for differential expression analysis",
+                doc_feature_open_access: "Open Access: All analysis results and raw data are freely downloadable",
+                doc_feature_multilingual: "Multilingual Support: Providing Chinese and English bilingual interface",
+                doc_feature_visualization: "Interactive Visualization: Providing volcano plots, MA plots, PCA plots and heatmaps",
+                doc_feature_quality: "Data Quality: Strict data quality control and validation",
+                doc_architecture_title: "Technical Architecture",
+                doc_frontend_title: "Frontend",
+                doc_backend_title: "Backend Analysis",
+                doc_data_title: "Data Management",
+                doc_usage_title: "Usage",
+                doc_online_title: "Online Access",
+                doc_online_content: "Visit NETA GitHub Pages to use the online platform for data browsing and analysis.",
+                doc_visit_online: "Visit Online Platform",
+                doc_local_title: "Local Deployment",
+                doc_citation_title: "Citation Information",
+                doc_citation_content: "If you use the NETA database in your research, please cite:",
+                doc_contact_title: "Contact Information",
+                doc_maintainer: "Project Maintainer",
+                doc_email: "Email",
+                doc_github: "GitHub",
+                doc_homepage: "Project Homepage",
                 footer_title: "NETA Project | Neuroendocrine Tumor Research Platform",
                 footer_subtitle: "Connecting Neuroendocrine Tumor Biology with Computational Innovation"
             }
