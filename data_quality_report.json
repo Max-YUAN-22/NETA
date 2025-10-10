@@ -1,0 +1,271 @@
+{
+  "timestamp": ["2025-10-11 02:43:14"],
+  "basic_statistics": {
+    "datasets": [19],
+    "samples": [2196],
+    "genes": [230219],
+    "expressions": [3800000]
+  },
+  "tissue_types": [
+    {
+      "name": "Pancreas",
+      "count": 8
+    },
+    {
+      "name": "Prostate",
+      "count": 4
+    },
+    {
+      "name": "Gastrointestinal",
+      "count": 4
+    },
+    {
+      "name": "Lung",
+      "count": 3
+    }
+  ],
+  "tumor_types": [
+    {
+      "name": "Pancreatic Cancer",
+      "count": 6
+    },
+    {
+      "name": "Prostate Cancer",
+      "count": 4
+    },
+    {
+      "name": "SCLC",
+      "count": 3
+    },
+    {
+      "name": "Pancreatic NET",
+      "count": 2
+    },
+    {
+      "name": "Gastric Cancer",
+      "count": 2
+    },
+    {
+      "name": "Colorectal Cancer",
+      "count": 2
+    }
+  ],
+  "age_distribution": [
+    {
+      "age_group": "Unknown",
+      "count": 2196
+    }
+  ],
+  "gender_distribution": [
+    {
+      "gender": "Unknown",
+      "count": 2196
+    }
+  ],
+  "expression_statistics": [
+    {
+      "min_value": -8.1748,
+      "max_value": 5618284,
+      "mean_value": 294.5282,
+      "total_records": 3800000,
+      "non_zero_records": 3425149
+    }
+  ],
+  "dataset_details": [
+    {
+      "geo_id": "GSE11969",
+      "title": "Small cell lung cancer neuroendocrine markers",
+      "tissue_type": "Lung",
+      "tumor_type": "SCLC",
+      "n_samples": 163,
+      "n_genes": 21619,
+      "publication_year": 2020,
+      "priority": 1
+    },
+    {
+      "geo_id": "GSE73338",
+      "title": "Pancreatic neuroendocrine tumors RNA-seq analysis",
+      "tissue_type": "Pancreas",
+      "tumor_type": "Pancreatic NET",
+      "n_samples": 97,
+      "n_genes": 15961,
+      "publication_year": 2023,
+      "priority": 1
+    },
+    {
+      "geo_id": "GSE103174",
+      "title": "Small cell lung cancer neuroendocrine differentiation",
+      "tissue_type": "Lung",
+      "tumor_type": "SCLC",
+      "n_samples": 53,
+      "n_genes": 15040,
+      "publication_year": 2021,
+      "priority": 1
+    },
+    {
+      "geo_id": "GSE117851",
+      "title": "Pancreatic neuroendocrine tumor progression",
+      "tissue_type": "Pancreas",
+      "tumor_type": "Pancreatic NET",
+      "n_samples": 47,
+      "n_genes": 22277,
+      "publication_year": 2021,
+      "priority": 1
+    },
+    {
+      "geo_id": "GSE68468",
+      "title": "Colorectal cancer metastasis signatures",
+      "tissue_type": "Gastrointestinal",
+      "tumor_type": "Colorectal Cancer",
+      "n_samples": 390,
+      "n_genes": 22283,
+      "publication_year": 2015,
+      "priority": 2
+    },
+    {
+      "geo_id": "GSE29272",
+      "title": "Colorectal cancer progression analysis",
+      "tissue_type": "Gastrointestinal",
+      "tumor_type": "Colorectal Cancer",
+      "n_samples": 268,
+      "n_genes": 22283,
+      "publication_year": 2023,
+      "priority": 2
+    },
+    {
+      "geo_id": "GSE6919",
+      "title": "Prostate cancer progression with neuroendocrine features",
+      "tissue_type": "Prostate",
+      "tumor_type": "Prostate Cancer",
+      "n_samples": 171,
+      "n_genes": 12625,
+      "publication_year": 2021,
+      "priority": 2
+    },
+    {
+      "geo_id": "GSE26899",
+      "title": "Gastric cancer molecular profiling",
+      "tissue_type": "Gastrointestinal",
+      "tumor_type": "Gastric Cancer",
+      "n_samples": 108,
+      "n_genes": 48803,
+      "publication_year": 2022,
+      "priority": 2
+    },
+    {
+      "geo_id": "GSE28735",
+      "title": "Pancreatic cancer survival analysis",
+      "tissue_type": "Pancreas",
+      "tumor_type": "Pancreatic Cancer",
+      "n_samples": 90,
+      "n_genes": 28869,
+      "publication_year": 2019,
+      "priority": 2
+    },
+    {
+      "geo_id": "GSE35988",
+      "title": "Prostate cancer metastasis analysis",
+      "tissue_type": "Prostate",
+      "tumor_type": "Prostate Cancer",
+      "n_samples": 88,
+      "n_genes": 41000,
+      "publication_year": 2017,
+      "priority": 2
+    },
+    {
+      "geo_id": "GSE15471",
+      "title": "Pancreatic ductal adenocarcinoma gene expression",
+      "tissue_type": "Pancreas",
+      "tumor_type": "Pancreatic Cancer",
+      "n_samples": 78,
+      "n_genes": 54675,
+      "publication_year": 2019,
+      "priority": 2
+    },
+    {
+      "geo_id": "GSE16515",
+      "title": "Pancreatic cancer progression markers",
+      "tissue_type": "Pancreas",
+      "tumor_type": "Pancreatic Cancer",
+      "n_samples": 52,
+      "n_genes": 54613,
+      "publication_year": 2016,
+      "priority": 2
+    },
+    {
+      "geo_id": "GSE32676",
+      "title": "Pancreatic cancer metastasis signatures",
+      "tissue_type": "Pancreas",
+      "tumor_type": "Pancreatic Cancer",
+      "n_samples": 32,
+      "n_genes": 54675,
+      "publication_year": 2018,
+      "priority": 2
+    },
+    {
+      "geo_id": "GSE60436",
+      "title": "Small cell lung cancer gene expression profiling",
+      "tissue_type": "Lung",
+      "tumor_type": "SCLC",
+      "n_samples": 9,
+      "n_genes": 48803,
+      "publication_year": 2017,
+      "priority": 2
+    },
+    {
+      "geo_id": "GSE62254",
+      "title": "Gastric cancer molecular subtypes",
+      "tissue_type": "Gastrointestinal",
+      "tumor_type": "Gastric Cancer",
+      "n_samples": 300,
+      "n_genes": 54675,
+      "publication_year": 2018,
+      "priority": 3
+    },
+    {
+      "geo_id": "GSE70768",
+      "title": "Prostate cancer heterogeneity analysis",
+      "tissue_type": "Prostate",
+      "tumor_type": "Prostate Cancer",
+      "n_samples": 199,
+      "n_genes": 47323,
+      "publication_year": 2021,
+      "priority": 3
+    },
+    {
+      "geo_id": "GSE4107",
+      "title": "Pancreatic cancer cell lines expression",
+      "tissue_type": "Pancreas",
+      "tumor_type": "Pancreatic Cancer",
+      "n_samples": 22,
+      "n_genes": 54675,
+      "publication_year": 2020,
+      "priority": 3
+    },
+    {
+      "geo_id": "GSE55945",
+      "title": "Prostate cancer survival markers",
+      "tissue_type": "Prostate",
+      "tumor_type": "Prostate Cancer",
+      "n_samples": 21,
+      "n_genes": 54675,
+      "publication_year": 2020,
+      "priority": 3
+    },
+    {
+      "geo_id": "GSE46234",
+      "title": "Pancreatic cancer drug resistance analysis",
+      "tissue_type": "Pancreas",
+      "tumor_type": "Pancreatic Cancer",
+      "n_samples": 8,
+      "n_genes": 54675,
+      "publication_year": 2017,
+      "priority": 3
+    }
+  ],
+  "quality_metrics": {
+    "data_completeness": [100],
+    "expression_coverage": [90.14],
+    "dataset_diversity": [4]
+  }
+}

@@ -1,0 +1,15 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://max-yuan-22.github.io/NETA/sitemap.xml
+
+# Crawl-delay
+Crawl-delay: 1
+
+# Disallow certain paths
+Disallow: /api/
+Disallow: /static/
+Disallow: /node_modules/
+Disallow: /src/
+Disallow: /build/
