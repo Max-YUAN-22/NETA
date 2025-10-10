@@ -1,187 +1,23 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NETA - 泛神经内分泌癌数据库</title>
-    <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 0;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            min-height: 100vh;
-        }
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem;
-        }
-        .header {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-        .header h1 {
-            font-size: 4rem;
-            margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-        }
-        .header p {
-            font-size: 1.3rem;
-            opacity: 0.9;
-        }
-        .stats {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-bottom: 3rem;
-        }
-        .stat-card {
-            background: rgba(255,255,255,0.1);
-            padding: 2rem;
-            border-radius: 15px;
-            text-align: center;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255,255,255,0.2);
-            transition: transform 0.3s ease;
-        }
-        .stat-card:hover {
-            transform: translateY(-5px);
-        }
-        .stat-number {
-            font-size: 3rem;
-            font-weight: bold;
-            margin-bottom: 0.5rem;
-            color: #ffd700;
-        }
-        .stat-label {
-            font-size: 1.1rem;
-            opacity: 0.9;
-        }
-        .features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-bottom: 3rem;
-        }
-        .feature-card {
-            background: rgba(255,255,255,0.1);
-            padding: 2rem;
-            border-radius: 15px;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255,255,255,0.2);
-            transition: transform 0.3s ease;
-        }
-        .feature-card:hover {
-            transform: translateY(-5px);
-        }
-        .feature-card h3 {
-            margin-top: 0;
-            color: #ffd700;
-            font-size: 1.5rem;
-        }
-        .cta {
-            text-align: center;
-            margin-top: 3rem;
-        }
-        .btn {
-            display: inline-block;
-            padding: 1.2rem 2.5rem;
-            background: linear-gradient(45deg, #ffd700, #ffed4e);
-            color: #333;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: bold;
-            margin: 0 1rem;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
-        }
-        .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(255, 215, 0, 0.4);
-            color: #333;
-            text-decoration: none;
-        }
-        .footer {
-            text-align: center;
-            margin-top: 4rem;
-            opacity: 0.7;
-            padding: 2rem 0;
-            border-top: 1px solid rgba(255,255,255,0.2);
-        }
-        .highlight {
-            background: linear-gradient(45deg, #ffd700, #ffed4e);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            font-weight: bold;
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <div class="header">
-            <h1>🧬 NETA</h1>
-            <p class="highlight">泛神经内分泌癌转录组学分析平台</p>
-            <p>基于28个真实GEO数据集，提供全面的生物信息学分析功能</p>
-        </div>
-
-        <div class="stats">
-            <div class="stat-card">
-                <div class="stat-number">28</div>
-                <div class="stat-label">真实GEO数据集</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-number">3,551</div>
-                <div class="stat-label">样本数量</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-number">230,992</div>
-                <div class="stat-label">基因数量</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-number">1.4M</div>
-                <div class="stat-label">表达数据记录</div>
-            </div>
-        </div>
-
-        <div class="features">
-            <div class="feature-card">
-                <h3>🔬 全面数据分析</h3>
-                <p>支持差异表达分析、PCA分析、富集分析、生存分析等多种生物信息学分析方法，基于DESeq2、ggplot2等专业工具</p>
-            </div>
-            <div class="feature-card">
-                <h3>📊 交互式可视化</h3>
-                <p>提供火山图、热图、散点图等多种可视化图表，支持用户交互操作，基于React和Recharts构建</p>
-            </div>
-            <div class="feature-card">
-                <h3>🎯 100%真实数据</h3>
-                <p>所有数据均来自GEO数据库，无任何模拟数据，确保研究结果的可靠性和可重现性</p>
-            </div>
-            <div class="feature-card">
-                <h3>🚀 现代化架构</h3>
-                <p>基于Flask + React + R的现代化技术栈，支持Docker容器化部署，易于扩展和维护</p>
-            </div>
-            <div class="feature-card">
-                <h3>📈 发表就绪</h3>
-                <p>具备发表高分论文的所有条件：大规模真实数据、先进技术、完整功能、详细文档</p>
-            </div>
-            <div class="feature-card">
-                <h3>🌐 在线访问</h3>
-                <p>支持GitHub Pages部署，研究者可随时随地访问和使用平台进行数据分析</p>
-            </div>
-        </div>
-
-        <div class="cta">
-            <a href="https://github.com/Max-YUAN-22/NETA" class="btn">查看源码</a>
-            <a href="https://github.com/Max-YUAN-22/NETA/blob/main/README.md" class="btn">使用指南</a>
-        </div>
-
-        <div class="footer">
-            <p>© 2024 NETA - 泛神经内分泌癌数据库 | 基于真实GEO数据构建</p>
-            <p>为泛神经内分泌癌研究提供强大的数据分析支持！</p>
-        </div>
-    </div>
-</body>
-</html>
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"/><link rel="icon" href="/favicon.ico"/><meta name="viewport" content="width=device-width,initial-scale=1"/><meta name="theme-color" content="#667eea"/><meta name="description" content="NETA - 泛神经内分泌癌转录组学分析平台。基于19个真实GEO数据集，提供差异表达分析、PCA分析、富集分析、生存分析等生物信息学功能。100%真实数据，发表就绪。"/><meta name="keywords" content="神经内分泌癌,转录组学,生物信息学,GEO数据库,差异表达分析,PCA分析,富集分析,生存分析,RNA-seq,癌症研究"/><meta name="author" content="Max-YUAN-22"/><meta name="robots" content="index, follow"/><meta property="og:title" content="NETA - 泛神经内分泌癌转录组学分析平台"/><meta property="og:description" content="基于19个真实GEO数据集的神经内分泌癌转录组学分析平台，提供全面的生物信息学分析功能。"/><meta property="og:type" content="website"/><meta property="og:url" content="https://max-yuan-22.github.io/NETA/"/><meta property="og:image" content="/og-image.png"/><meta property="og:site_name" content="NETA"/><meta name="twitter:card" content="summary_large_image"/><meta name="twitter:title" content="NETA - 泛神经内分泌癌转录组学分析平台"/><meta name="twitter:description" content="基于19个真实GEO数据集的神经内分泌癌转录组学分析平台，提供全面的生物信息学分析功能。"/><meta name="twitter:image" content="/twitter-image.png"/><script type="application/ld+json">{
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "NETA - 泛神经内分泌癌转录组学分析平台",
+    "description": "基于19个真实GEO数据集的神经内分泌癌转录组学分析平台，提供全面的生物信息学分析功能。",
+    "url": "https://max-yuan-22.github.io/NETA/",
+    "applicationCategory": "Bioinformatics",
+    "operatingSystem": "Web Browser",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "author": {
+      "@type": "Person",
+      "name": "Max-YUAN-22"
+    },
+    "dateCreated": "2024-01-01",
+    "dateModified": "2024-01-01",
+    "inLanguage": "zh-CN",
+    "isAccessibleForFree": true,
+    "keywords": "神经内分泌癌,转录组学,生物信息学,GEO数据库,差异表达分析,PCA分析,富集分析,生存分析,RNA-seq,癌症研究"
+  }</script><link rel="preload" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" as="style"/><link rel="preload" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" as="style"/><link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/><link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin/><title>NETA - 泛神经内分泌癌转录组学分析平台</title><script defer="defer" src="/static/js/main.1f368992.js"></script><link href="/static/css/main.22cd946a.css" rel="stylesheet"></head><body><noscript><div style="text-align:center;padding:50px;font-family:Arial,sans-serif"><h1>🧬 NETA</h1><p>泛神经内分泌癌转录组学分析平台</p><p>您需要启用JavaScript才能使用此应用程序。</p><p>请启用JavaScript并刷新页面。</p></div></noscript><div id="root"><div style="position:fixed;top:0;left:0;width:100%;height:100%;background:linear-gradient(135deg,#667eea 0,#764ba2 100%);display:flex;flex-direction:column;justify-content:center;align-items:center;color:#fff;font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif"><div style="width:60px;height:60px;border:4px solid rgba(255,255,255,.3);border-top:4px solid #fff;border-radius:50%;animation:spin 1s linear infinite;margin-bottom:20px"></div><h2 style="margin:0;font-size:2rem">🧬 NETA</h2><p style="margin:10px 0 0 0;opacity:.8">正在加载分析平台...</p></div></div><style>@keyframes spin{0%{transform:rotate(0)}100%{transform:rotate(360deg)}}</style><script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script></body></html>
