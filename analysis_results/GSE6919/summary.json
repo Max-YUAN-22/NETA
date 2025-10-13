@@ -1,0 +1,34 @@
+{
+  "dataset": {
+    "id": 5,
+    "geo_id": "GSE6919",
+    "title": "Prostate cancer progression with neuroendocrine features",
+    "tissue_type": "Prostate",
+    "tumor_type": "Prostate Cancer",
+    "n_samples": 171,
+    "n_genes": 12625
+  },
+  "pca": {
+    "explained_variance_ratio": [
+      0.37829520027871943,
+      0.16174580891077736
+    ],
+    "figure": "pca.png"
+  },
+  "heatmap": {
+    "top_variable_genes": 50,
+    "figure": "heatmap.png"
+  },
+  "volcano": {
+    "method": "Welch t-test (offline quick view)",
+    "thresholds": {
+      "|log2FC|": 1.0,
+      "pvalue": 0.05
+    },
+    "figure": null
+  },
+  "matrix": {
+    "genes": 12625,
+    "samples": 16
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "dataset": {
+    "id": 20,
+    "geo_id": "GSE70768",
+    "title": "Prostate cancer heterogeneity analysis",
+    "tissue_type": "Prostate",
+    "tumor_type": "Prostate Cancer",
+    "n_samples": 199,
+    "n_genes": 47323
+  },
+  "pca": {
+    "explained_variance_ratio": [
+      0.9978612797473524,
+      0.0012020878474562542
+    ],
+    "figure": "pca.png"
+  },
+  "heatmap": {
+    "top_variable_genes": 50,
+    "figure": "heatmap.png"
+  },
+  "volcano": {
+    "method": "Welch t-test (offline quick view)",
+    "thresholds": {
+      "|log2FC|": 1.0,
+      "pvalue": 0.05
+    },
+    "figure": null
+  },
+  "matrix": {
+    "genes": 47323,
+    "samples": 5
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "dataset": {
+    "id": 14,
+    "geo_id": "GSE16515",
+    "title": "Pancreatic cancer progression markers",
+    "tissue_type": "Pancreas",
+    "tumor_type": "Pancreatic Cancer",
+    "n_samples": 52,
+    "n_genes": 54613
+  },
+  "pca": {
+    "explained_variance_ratio": [
+      0.9453243381702418,
+      0.030738326271178208
+    ],
+    "figure": "pca.png"
+  },
+  "heatmap": {
+    "top_variable_genes": 50,
+    "figure": "heatmap.png"
+  },
+  "volcano": {
+    "method": "Welch t-test (offline quick view)",
+    "thresholds": {
+      "|log2FC|": 1.0,
+      "pvalue": 0.05
+    },
+    "figure": null
+  },
+  "matrix": {
+    "genes": 54613,
+    "samples": 4
+  }
+}

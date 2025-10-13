@@ -1,0 +1,34 @@
+{
+  "dataset": {
+    "id": 21,
+    "geo_id": "GSE62254",
+    "title": "Gastric cancer molecular subtypes",
+    "tissue_type": "Gastrointestinal",
+    "tumor_type": "Gastric Cancer",
+    "n_samples": 300,
+    "n_genes": 54675
+  },
+  "pca": {
+    "explained_variance_ratio": [
+      0.9817715121059061,
+      0.01132136738241639
+    ],
+    "figure": "pca.png"
+  },
+  "heatmap": {
+    "top_variable_genes": 50,
+    "figure": "heatmap.png"
+  },
+  "volcano": {
+    "method": "Welch t-test (offline quick view)",
+    "thresholds": {
+      "|log2FC|": 1.0,
+      "pvalue": 0.05
+    },
+    "figure": null
+  },
+  "matrix": {
+    "genes": 54675,
+    "samples": 4
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "dataset": {
+    "id": 18,
+    "geo_id": "GSE46234",
+    "title": "Pancreatic cancer drug resistance analysis",
+    "tissue_type": "Pancreas",
+    "tumor_type": "Pancreatic Cancer",
+    "n_samples": 8,
+    "n_genes": 54675
+  },
+  "pca": {
+    "explained_variance_ratio": [
+      0.8439938821476719,
+      0.08482577162794508
+    ],
+    "figure": "pca.png"
+  },
+  "heatmap": {
+    "top_variable_genes": 50,
+    "figure": "heatmap.png"
+  },
+  "volcano": {
+    "method": "Welch t-test (offline quick view)",
+    "thresholds": {
+      "|log2FC|": 1.0,
+      "pvalue": 0.05
+    },
+    "figure": null
+  },
+  "matrix": {
+    "genes": 54675,
+    "samples": 4
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "dataset": {
+    "id": 9,
+    "geo_id": "GSE29272",
+    "title": "Colorectal cancer progression analysis",
+    "tissue_type": "Gastrointestinal",
+    "tumor_type": "Colorectal Cancer",
+    "n_samples": 268,
+    "n_genes": 22283
+  },
+  "pca": {
+    "explained_variance_ratio": [
+      0.866676832412856,
+      0.06534406645603412
+    ],
+    "figure": "pca.png"
+  },
+  "heatmap": {
+    "top_variable_genes": 50,
+    "figure": "heatmap.png"
+  },
+  "volcano": {
+    "method": "Welch t-test (offline quick view)",
+    "thresholds": {
+      "|log2FC|": 1.0,
+      "pvalue": 0.05
+    },
+    "figure": null
+  },
+  "matrix": {
+    "genes": 22283,
+    "samples": 9
+  }
+}

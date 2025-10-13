@@ -1,0 +1,34 @@
+{
+  "dataset": {
+    "id": 10,
+    "geo_id": "GSE39582",
+    "title": "Colorectal cancer survival analysis",
+    "tissue_type": "Gastrointestinal",
+    "tumor_type": "Colorectal Cancer",
+    "n_samples": 585,
+    "n_genes": 54675
+  },
+  "pca": {
+    "explained_variance_ratio": [
+      0.9826698853795294,
+      0.010814446997390306
+    ],
+    "figure": "pca.png"
+  },
+  "heatmap": {
+    "top_variable_genes": 50,
+    "figure": "heatmap.png"
+  },
+  "volcano": {
+    "method": "Welch t-test (offline quick view)",
+    "thresholds": {
+      "|log2FC|": 1.0,
+      "pvalue": 0.05
+    },
+    "figure": null
+  },
+  "matrix": {
+    "genes": 54675,
+    "samples": 4
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "dataset": {
+    "id": 12,
+    "geo_id": "GSE84437",
+    "title": "Gastric cancer drug resistance profiling",
+    "tissue_type": "Gastrointestinal",
+    "tumor_type": "Gastric Cancer",
+    "n_samples": 483,
+    "n_genes": 49576
+  },
+  "pca": {
+    "explained_variance_ratio": [
+      0.9861358791990542,
+      0.0068326260658779624
+    ],
+    "figure": "pca.png"
+  },
+  "heatmap": {
+    "top_variable_genes": 50,
+    "figure": "heatmap.png"
+  },
+  "volcano": {
+    "method": "Welch t-test (offline quick view)",
+    "thresholds": {
+      "|log2FC|": 1.0,
+      "pvalue": 0.05
+    },
+    "figure": null
+  },
+  "matrix": {
+    "genes": 48708,
+    "samples": 5
+  }
+}

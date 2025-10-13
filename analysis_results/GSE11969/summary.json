@@ -1,0 +1,34 @@
+{
+  "dataset": {
+    "id": 4,
+    "geo_id": "GSE11969",
+    "title": "Small cell lung cancer neuroendocrine markers",
+    "tissue_type": "Lung",
+    "tumor_type": "SCLC",
+    "n_samples": 163,
+    "n_genes": 21619
+  },
+  "pca": {
+    "explained_variance_ratio": [
+      0.24939470132163116,
+      0.13390058590058604
+    ],
+    "figure": "pca.png"
+  },
+  "heatmap": {
+    "top_variable_genes": 50,
+    "figure": "heatmap.png"
+  },
+  "volcano": {
+    "method": "Welch t-test (offline quick view)",
+    "thresholds": {
+      "|log2FC|": 1.0,
+      "pvalue": 0.05
+    },
+    "figure": null
+  },
+  "matrix": {
+    "genes": 21619,
+    "samples": 10
+  }
+}
