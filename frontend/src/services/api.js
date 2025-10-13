@@ -3,6 +3,16 @@ export const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:5
 // 使用相对路径，便于在 GitHub Pages (项目子路径) 下正常加载
 const FALLBACK_BASE = 'data';
 
+async function fetchWithFallback(primaryUrl, fallbackUrl, init) {
+  try {
+    const res = await fetch(primaryUrl, init);
+    if (res && res.ok) return res;
+  } catch (_) {
+    // ignore and try fallback
+  }
+  return fetch(fallbackUrl, init);
+}
+
 // API调用函数
 export const api = {
   // 健康检查
@@ -10,23 +20,32 @@ export const api = {
   
   // 数据集相关
   getDatasets: (page = 1, perPage = 20) => 
-    fetch(`${API_BASE_URL}/datasets?page=${page}&per_page=${perPage}`)
-      .catch(() => fetch(`${FALLBACK_BASE}/datasets.json`)),
+    fetchWithFallback(
+      `${API_BASE_URL}/datasets?page=${page}&per_page=${perPage}`,
+      `${FALLBACK_BASE}/datasets.json`
+    ),
   
   getDatasetDetail: (id) => 
     fetch(`${API_BASE_URL}/datasets/${id}`),
   
   // 数据集筛选和搜索
   filterDatasets: (params) => 
-    fetch(`${API_BASE_URL}/datasets/filter?${params}`)
-      .catch(() => fetch(`${FALLBACK_BASE}/datasets.json`)),
+    fetchWithFallback(
+      `${API_BASE_URL}/datasets/filter?${params}`,
+      `${FALLBACK_BASE}/datasets.json`
+    ),
   
   searchDatasets: (query, limit = 20) => 
-    fetch(`${API_BASE_URL}/datasets/search?q=${query}&limit=${limit}`)
-      .catch(() => fetch(`${FALLBACK_BASE}/datasets.json`)),
+    fetchWithFallback(
+      `${API_BASE_URL}/datasets/search?q=${query}&limit=${limit}`,
+      `${FALLBACK_BASE}/datasets.json`
+    ),
   
   getDatasetStatistics: () => 
-    fetch(`${API_BASE_URL}/datasets/statistics`).catch(() => fetch(`${FALLBACK_BASE}/stats.json`)),
+    fetchWithFallback(
+      `${API_BASE_URL}/datasets/statistics`,
+      `${FALLBACK_BASE}/stats.json`
+    ),
   
   // 统计信息
   getStatistics: () => 
