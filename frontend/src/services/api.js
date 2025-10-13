@@ -1,6 +1,7 @@
 // API服务配置
 export const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000/api';
-const FALLBACK_BASE = '/data';
+// 使用相对路径，便于在 GitHub Pages (项目子路径) 下正常加载
+const FALLBACK_BASE = 'data';
 
 // API调用函数
 export const api = {
