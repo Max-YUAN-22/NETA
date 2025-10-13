@@ -1,0 +1,90 @@
+{
+  "total_datasets": 36,
+  "total_samples": 6317,
+  "total_genes": 307274,
+  "total_expressions": 7693112,
+  "tissue_types": [
+    {
+      "name": "Pancreas",
+      "count": 11
+    },
+    {
+      "name": "Gastrointestinal",
+      "count": 7
+    },
+    {
+      "name": "Lung",
+      "count": 6
+    },
+    {
+      "name": "Prostate",
+      "count": 4
+    },
+    {
+      "name": "Adrenal",
+      "count": 3
+    },
+    {
+      "name": "Thyroid",
+      "count": 2
+    },
+    {
+      "name": "Pituitary",
+      "count": 2
+    },
+    {
+      "name": "Multiple",
+      "count": 1
+    }
+  ],
+  "tumor_types": [
+    {
+      "name": "Pancreatic Cancer",
+      "count": 8
+    },
+    {
+      "name": "SCLC",
+      "count": 4
+    },
+    {
+      "name": "Prostate Cancer",
+      "count": 4
+    },
+    {
+      "name": "Colorectal Cancer",
+      "count": 4
+    },
+    {
+      "name": "Pancreatic NET",
+      "count": 3
+    },
+    {
+      "name": "Gastric Cancer",
+      "count": 3
+    },
+    {
+      "name": "Pituitary Adenoma",
+      "count": 2
+    },
+    {
+      "name": "Pheochromocytoma",
+      "count": 2
+    },
+    {
+      "name": "MTC",
+      "count": 2
+    },
+    {
+      "name": "Lung Cancer",
+      "count": 2
+    },
+    {
+      "name": "NET",
+      "count": 1
+    },
+    {
+      "name": "ACC",
+      "count": 1
+    }
+  ]
+}
