@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/NETA/static/css/main.e1355142.css",
-    "main.js": "/NETA/static/js/main.d8e7e538.js",
+    "main.js": "/NETA/static/js/main.21f440da.js",
     "static/media/bootstrap-icons.woff?": "/NETA/static/media/bootstrap-icons.1295669cd4e305c97f2c.woff",
     "static/media/bootstrap-icons.woff2?": "/NETA/static/media/bootstrap-icons.92ea18a81d737146ff04.woff2",
     "index.html": "/NETA/index.html",
     "main.e1355142.css.map": "/NETA/static/css/main.e1355142.css.map",
-    "main.d8e7e538.js.map": "/NETA/static/js/main.d8e7e538.js.map"
+    "main.21f440da.js.map": "/NETA/static/js/main.21f440da.js.map"
   },
   "entrypoints": [
     "static/css/main.e1355142.css",
-    "static/js/main.d8e7e538.js"
+    "static/js/main.21f440da.js"
   ]
 }
