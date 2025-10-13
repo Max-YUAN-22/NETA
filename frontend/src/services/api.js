@@ -3,6 +3,7 @@ export const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:5
 // 在 GitHub Pages 下使用 PUBLIC_URL 作为前缀，确保任意路由下都能正确访问静态资源
 const PUBLIC_BASE = process.env.PUBLIC_URL || '';
 const FALLBACK_BASE = `${PUBLIC_BASE}/data`;
+const IS_GITHUB_PAGES = typeof window !== 'undefined' && /github\.io$/i.test(window.location.host);
 
 async function fetchWithFallback(primaryUrl, fallbackUrl, init) {
   try {
@@ -21,32 +22,40 @@ export const api = {
   
   // 数据集相关
   getDatasets: (page = 1, perPage = 20) => 
-    fetchWithFallback(
-      `${API_BASE_URL}/datasets?page=${page}&per_page=${perPage}`,
-      `${FALLBACK_BASE}/datasets.json`
-    ),
+    IS_GITHUB_PAGES
+      ? fetch(`${FALLBACK_BASE}/datasets.json`)
+      : fetchWithFallback(
+          `${API_BASE_URL}/datasets?page=${page}&per_page=${perPage}`,
+          `${FALLBACK_BASE}/datasets.json`
+        ),
   
   getDatasetDetail: (id) => 
     fetch(`${API_BASE_URL}/datasets/${id}`),
   
   // 数据集筛选和搜索
   filterDatasets: (params) => 
-    fetchWithFallback(
-      `${API_BASE_URL}/datasets/filter?${params}`,
-      `${FALLBACK_BASE}/datasets.json`
-    ),
+    IS_GITHUB_PAGES
+      ? fetch(`${FALLBACK_BASE}/datasets.json`)
+      : fetchWithFallback(
+          `${API_BASE_URL}/datasets/filter?${params}`,
+          `${FALLBACK_BASE}/datasets.json`
+        ),
   
   searchDatasets: (query, limit = 20) => 
-    fetchWithFallback(
-      `${API_BASE_URL}/datasets/search?q=${query}&limit=${limit}`,
-      `${FALLBACK_BASE}/datasets.json`
-    ),
+    IS_GITHUB_PAGES
+      ? fetch(`${FALLBACK_BASE}/datasets.json`)
+      : fetchWithFallback(
+          `${API_BASE_URL}/datasets/search?q=${query}&limit=${limit}`,
+          `${FALLBACK_BASE}/datasets.json`
+        ),
   
   getDatasetStatistics: () => 
-    fetchWithFallback(
-      `${API_BASE_URL}/datasets/statistics`,
-      `${FALLBACK_BASE}/stats.json`
-    ),
+    IS_GITHUB_PAGES
+      ? fetch(`${FALLBACK_BASE}/stats.json`)
+      : fetchWithFallback(
+          `${API_BASE_URL}/datasets/statistics`,
+          `${FALLBACK_BASE}/stats.json`
+        ),
   
   // 统计信息
   getStatistics: () => 
