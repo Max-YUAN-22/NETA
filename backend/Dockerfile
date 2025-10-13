@@ -14,7 +14,7 @@ RUN apt-get update && apt-get install -y \
 
 # 安装Python依赖
 COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt gunicorn==21.2.0
 
 # 安装R包
 RUN R -e "install.packages(c('optparse', 'jsonlite', 'ggplot2', 'pheatmap'), repos='https://cran.r-project.org/')"
@@ -28,5 +28,6 @@ RUN mkdir -p data/processed/analysis_results
 # 暴露端口
 EXPOSE 5000
 
-# 启动命令
-CMD ["python", "app.py"]
+# 启动命令（生产使用 gunicorn）
+ENV PORT=5000
+CMD ["gunicorn", "-w", "2", "-b", "0.0.0.0:${PORT}", "app:app"]

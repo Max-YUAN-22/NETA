@@ -538,6 +538,9 @@ if __name__ == '__main__':
     # 创建数据库表
     with app.app_context():
         db.create_all()
-    
+
+    # 部署环境通常提供 PORT 环境变量（如 Render/Heroku）
+    port = int(os.environ.get('PORT', '5000'))
+
     # 启动应用
-    app.run(host='0.0.0.0', port=5000, debug=True)
+    app.run(host='0.0.0.0', port=port, debug=os.environ.get('FLASK_DEBUG','false').lower()=='true')
