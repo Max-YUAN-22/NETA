@@ -59,7 +59,12 @@ export const api = {
   
   // 统计信息
   getStatistics: () => 
-    fetch(`${API_BASE_URL}/statistics/overview`),
+    IS_GITHUB_PAGES
+      ? fetch(`${FALLBACK_BASE}/stats.json`)
+      : fetchWithFallback(
+          `${API_BASE_URL}/statistics/overview`,
+          `${FALLBACK_BASE}/stats.json`
+        ),
   
   // 基因查询
   searchGenes: (query, limit = 50) => 
