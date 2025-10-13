@@ -1,7 +1,8 @@
 // API服务配置
 export const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000/api';
-// 使用相对路径，便于在 GitHub Pages (项目子路径) 下正常加载
-const FALLBACK_BASE = 'data';
+// 在 GitHub Pages 下使用 PUBLIC_URL 作为前缀，确保任意路由下都能正确访问静态资源
+const PUBLIC_BASE = process.env.PUBLIC_URL || '';
+const FALLBACK_BASE = `${PUBLIC_BASE}/data`;
 
 async function fetchWithFallback(primaryUrl, fallbackUrl, init) {
   try {
