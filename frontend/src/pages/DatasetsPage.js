@@ -48,7 +48,7 @@ function DatasetsPage() {
   return (
     <div>
       <h2>📊 数据集列表</h2>
-      <p className="text-muted">浏览所有可用的神经内分泌肿瘤数据集</p>
+      <p className="text-muted">优先展示 RNA-seq（原始计数）数据集；微阵列在列表靠后</p>
 
       <Card>
         <Card.Body>
@@ -59,13 +59,21 @@ function DatasetsPage() {
                 <th>标题</th>
                 <th>组织类型</th>
                 <th>肿瘤类型</th>
+                <th>测序类型</th>
                 <th>样本数</th>
                 <th>基因数</th>
                 <th>发表年份</th>
               </tr>
             </thead>
             <tbody>
-              {datasets.map((dataset) => (
+              {datasets
+                .slice()
+                .sort((a,b)=>{
+                  const ra = (a.assay_type||'')==='RNA-seq'?0:1;
+                  const rb = (b.assay_type||'')==='RNA-seq'?0:1;
+                  return ra - rb;
+                })
+                .map((dataset) => (
                 <tr key={dataset.id}>
                   <td>
                     <code>{dataset.geo_id}</code>
@@ -80,6 +88,13 @@ function DatasetsPage() {
                     <span className="badge bg-secondary">
                       {dataset.tumor_type}
                     </span>
+                  </td>
+                  <td>
+                    {dataset.assay_type === 'RNA-seq' ? (
+                      <span className="badge bg-success">RNA-seq</span>
+                    ) : (
+                      <span className="badge bg-light text-dark">Microarray</span>
+                    )}
                   </td>
                   <td>{dataset.n_samples}</td>
                   <td>{dataset.n_genes?.toLocaleString()}</td>
