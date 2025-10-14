@@ -1,12 +1,20 @@
 {
   "dataset_id": [5],
   "samples": {
-    "total": [4],
-    "groups": {
-      "Prostate Cancer": [4]
-    }
+    "total": [16],
+    "groups": []
   },
   "genes": [12625],
-  "analysis_date": ["2025-10-14 10:09:02.888705"],
-  "outputs": ["pca.png", "pca.pdf", "pca.svg", "heatmap.png", "heatmap.pdf"]
+  "analysis_date": ["2025-10-14 10:21:39.965934"],
+  "outputs": {
+    "pca": ["png", "pdf"],
+    "heatmap": ["png", "pdf"],
+    "volcano": ["png", "pdf"],
+    "results": ["tsv"]
+  },
+  "success": {
+    "pca": [true],
+    "heatmap": [true],
+    "differential_expression": [true]
+  }
 }

@@ -1,12 +1,20 @@
 {
   "dataset_id": [9],
   "samples": {
-    "total": [3],
-    "groups": {
-      "Colorectal Cancer": [3]
-    }
+    "total": [9],
+    "groups": []
   },
-  "genes": [22283],
-  "analysis_date": ["2025-10-14 10:09:03.508599"],
-  "outputs": ["pca.png", "pca.pdf", "pca.svg", "heatmap.png", "heatmap.pdf"]
+  "genes": [15602],
+  "analysis_date": ["2025-10-14 10:21:47.034054"],
+  "outputs": {
+    "pca": ["png", "pdf"],
+    "heatmap": ["png", "pdf"],
+    "volcano": ["png", "pdf"],
+    "results": ["tsv"]
+  },
+  "success": {
+    "pca": [true],
+    "heatmap": [true],
+    "differential_expression": [true]
+  }
 }

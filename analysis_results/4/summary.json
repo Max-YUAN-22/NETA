@@ -1,12 +1,20 @@
 {
   "dataset_id": [4],
   "samples": {
-    "total": [3],
-    "groups": {
-      "SCLC": [3]
-    }
+    "total": [10],
+    "groups": []
   },
-  "genes": [825],
-  "analysis_date": ["2025-10-14 10:09:02.710875"],
-  "outputs": ["pca.png", "pca.pdf", "pca.svg", "heatmap.png", "heatmap.pdf"]
+  "genes": [1926],
+  "analysis_date": ["2025-10-14 10:21:38.000849"],
+  "outputs": {
+    "pca": ["png", "pdf"],
+    "heatmap": ["png", "pdf"],
+    "volcano": ["png", "pdf"],
+    "results": ["tsv"]
+  },
+  "success": {
+    "pca": [true],
+    "heatmap": [true],
+    "differential_expression": [true]
+  }
 }

@@ -1,0 +1,20 @@
+{
+  "dataset_id": [12],
+  "samples": {
+    "total": [5],
+    "groups": []
+  },
+  "genes": [48708],
+  "analysis_date": ["2025-10-14 10:21:55.872522"],
+  "outputs": {
+    "pca": ["png", "pdf"],
+    "heatmap": ["png", "pdf"],
+    "volcano": ["png", "pdf"],
+    "results": ["tsv"]
+  },
+  "success": {
+    "pca": [true],
+    "heatmap": [true],
+    "differential_expression": [true]
+  }
+}
