@@ -1,0 +1,12 @@
+{
+  "dataset_id": [1],
+  "samples": {
+    "total": [4],
+    "groups": {
+      "Pancreatic NET": [4]
+    }
+  },
+  "genes": [15961],
+  "analysis_date": ["2025-10-14 10:09:02.210559"],
+  "outputs": ["pca.png", "pca.pdf", "pca.svg", "heatmap.png", "heatmap.pdf"]
+}

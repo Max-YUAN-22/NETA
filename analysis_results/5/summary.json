@@ -1,0 +1,12 @@
+{
+  "dataset_id": [5],
+  "samples": {
+    "total": [4],
+    "groups": {
+      "Prostate Cancer": [4]
+    }
+  },
+  "genes": [12625],
+  "analysis_date": ["2025-10-14 10:09:02.888705"],
+  "outputs": ["pca.png", "pca.pdf", "pca.svg", "heatmap.png", "heatmap.pdf"]
+}

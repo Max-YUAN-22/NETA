@@ -1,0 +1,12 @@
+{
+  "dataset_id": [4],
+  "samples": {
+    "total": [3],
+    "groups": {
+      "SCLC": [3]
+    }
+  },
+  "genes": [825],
+  "analysis_date": ["2025-10-14 10:09:02.710875"],
+  "outputs": ["pca.png", "pca.pdf", "pca.svg", "heatmap.png", "heatmap.pdf"]
+}
